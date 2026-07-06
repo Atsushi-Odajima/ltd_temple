@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | 株式会社Freedom - Freedom.inc</title>
+  <meta name="description" content="株式会社Freedomへのお問い合わせページ。事業のご相談・お見積り、協業・パートナーシップ、採用応募、取材などのご連絡はこちらのフォームより承ります。">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ---- contact.html 固有スタイル ---- */
+    .contact-intro { text-align: center; }
+    .contact-intro__lead { color: var(--c-text-sub); max-width: 42em; margin-inline: auto; }
+    .contact-tel {
+      margin-top: 36px;
+      display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 26px 48px;
+      border: 1px solid var(--c-line);
+      background: var(--c-white);
+    }
+    .contact-tel__label {
+      font-family: var(--font-en); font-size: 11px; font-weight: 700; letter-spacing: 0.3em;
+      color: var(--c-navy-600); text-transform: uppercase;
+    }
+    .contact-tel__num {
+      font-family: var(--font-en); font-size: clamp(24px, 4vw, 32px); font-weight: 800; letter-spacing: 0.06em;
+      color: var(--c-navy-800); line-height: 1.3;
+    }
+    .contact-tel__note { font-size: 12px; color: var(--c-gray-500); }
+
+    /* 送信完了メッセージ */
+    .form-done {
+      text-align: center;
+      border: 1px solid var(--c-navy-800);
+      background:
+        radial-gradient(ellipse 480px 240px at 50% -20%, rgba(35, 76, 152, 0.08), transparent 70%),
+        var(--c-white);
+      padding: clamp(48px, 8vw, 80px) clamp(24px, 5vw, 64px);
+      position: relative;
+    }
+    .form-done__star { width: 56px; height: 56px; margin: 0 auto 22px; }
+    .form-done__star path { fill: var(--c-navy-800); }
+    .form-done__title {
+      font-family: var(--font-en); font-size: clamp(22px, 3.4vw, 30px); font-weight: 800;
+      letter-spacing: 0.08em; color: var(--c-navy-900); margin-bottom: 16px;
+    }
+    .form-done__text { color: var(--c-text-sub); margin-bottom: 36px; }
+
+    /* FAQ */
+    .faq-list { display: grid; gap: 14px; }
+    .faq-item {
+      background: var(--c-white);
+      border: 1px solid var(--c-line);
+      transition: border-color 0.3s;
+    }
+    .faq-item[open] { border-color: var(--c-navy-300); }
+    .faq-item summary {
+      display: flex; align-items: baseline; gap: 16px;
+      padding: 22px 56px 22px 24px;
+      font-weight: 700; letter-spacing: 0.05em; line-height: 1.7;
+      cursor: pointer; list-style: none; position: relative;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::before {
+      content: 'Q'; flex: none;
+      font-family: var(--font-en); font-size: 18px; font-weight: 800;
+      color: var(--c-navy-600); line-height: 1;
+    }
+    .faq-item summary::after {
+      content: ''; position: absolute; right: 24px; top: 50%;
+      width: 9px; height: 9px;
+      border-right: 2px solid var(--c-navy-600); border-bottom: 2px solid var(--c-navy-600);
+      transform: translateY(-70%) rotate(45deg);
+      transition: transform 0.3s var(--ease-out);
+    }
+    .faq-item[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+    .faq-item__a {
+      display: flex; align-items: baseline; gap: 16px;
+      padding: 0 24px 24px;
+      color: var(--c-text-sub); font-size: 13.5px;
+    }
+    .faq-item__a::before {
+      content: 'A'; flex: none;
+      font-family: var(--font-en); font-size: 18px; font-weight: 800;
+      color: var(--c-gray-400); line-height: 1.6;
+    }
+    @media (max-width: 560px) {
+      .contact-tel { width: 100%; padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header is-solid" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__ja">株式会社Freedom</span>
+          <span class="brand__en">FREEDOM.INC</span>
+        </span>
+      </a>
+      <nav class="global-nav" id="globalNav" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="about.html"><span class="nav-en">ABOUT</span><span class="nav-ja">私たちについて</span></a></li>
+          <li><a href="services.html"><span class="nav-en">SERVICE</span><span class="nav-ja">事業内容</span></a></li>
+          <li><a href="news.html"><span class="nav-en">NEWS</span><span class="nav-ja">お知らせ</span></a></li>
+          <li><a href="recruit.html"><span class="nav-en">RECRUIT</span><span class="nav-ja">採用情報</span></a></li>
+        </ul>
+        <a class="global-nav__cta" href="contact.html">CONTACT<small>お問い合わせ</small></a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開閉" aria-expanded="false" aria-controls="globalNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Page hero -->
+    <section class="page-hero">
+      <svg class="page-hero__star" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+      </svg>
+      <div class="container">
+        <h1 class="page-hero__en reveal">CONTACT</h1>
+        <p class="page-hero__ja reveal" data-delay="1">お問い合わせ</p>
+        <ol class="breadcrumb reveal" data-delay="2">
+          <li><a href="index.html">トップ</a></li>
+          <li>お問い合わせ</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="section section--paper">
+      <div class="container--narrow contact-intro">
+        <div class="sec-head sec-head--center reveal">
+          <p class="sec-head__label">GET IN TOUCH</p>
+          <h2 class="sec-head__title">お気軽にご相談ください</h2>
+        </div>
+        <p class="contact-intro__lead reveal" data-delay="1">
+          事業のご相談・お見積り、協業・パートナーシップのご提案、採用へのご応募、取材のご依頼など、下記フォームより承ります。<br>
+          内容を確認のうえ、<strong>3営業日以内に担当者よりご連絡します</strong>。
+        </p>
+        <div class="contact-tel reveal" data-delay="2">
+          <span class="contact-tel__label">TEL</span>
+          <a class="contact-tel__num" href="tel:03-0000-0000">03-****-****</a>
+          <span class="contact-tel__note">お電話でのお問い合わせ:平日 10:00〜18:00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="section">
+      <div class="container--narrow">
+        <div class="sec-head reveal">
+          <p class="sec-head__label">CONTACT FORM</p>
+          <h2 class="sec-head__title">お問い合わせフォーム</h2>
+          <p class="sec-head__lead">必須項目をご入力のうえ、送信ボタンを押してください。</p>
+        </div>
+
+        <form id="contactForm" class="form-grid reveal" data-delay="1" action="#" method="post">
+          <div class="form-field">
+            <label for="type">お問い合わせ種別<span class="req">必須</span></label>
+            <select id="type" name="type" required>
+              <option value="">選択してください</option>
+              <option value="business">事業のご相談・お見積り</option>
+              <option value="partnership">協業・パートナーシップ</option>
+              <option value="recruit">採用について</option>
+              <option value="press">取材・広報</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="company">会社名・団体名<span class="opt">任意</span></label>
+            <input type="text" id="company" name="company" autocomplete="organization" placeholder="株式会社○○">
+          </div>
+
+          <div class="form-field">
+            <label for="name">お名前<span class="req">必須</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="山田 太郎">
+          </div>
+
+          <div class="form-field">
+            <label for="kana">フリガナ<span class="opt">任意</span></label>
+            <input type="text" id="kana" name="kana" placeholder="ヤマダ タロウ">
+          </div>
+
+          <div class="form-field">
+            <label for="email">メールアドレス<span class="req">必須</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="example@example.com">
+            <p class="form-note">ご入力いただいたアドレス宛に、担当者よりご連絡いたします。</p>
+          </div>
+
+          <div class="form-field">
+            <label for="tel">電話番号<span class="opt">任意</span></label>
+            <input type="tel" id="tel" name="tel" autocomplete="tel" placeholder="03-1234-5678">
+          </div>
+
+          <div class="form-field">
+            <label for="message">お問い合わせ内容<span class="req">必須</span></label>
+            <textarea id="message" name="message" required placeholder="ご相談内容・ご希望の時期・ご予算感など、差し支えない範囲でご記入ください。"></textarea>
+          </div>
+
+          <div class="form-consent">
+            <label>
+              <input type="checkbox" name="consent" required>
+              <a href="privacy.html" target="_blank" rel="noopener">個人情報の取り扱い</a>に同意する<span class="req" style="margin-left:8px;">必須</span>
+            </label>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn--primary">SEND<span class="btn__ja">送信する</span></button>
+          </div>
+        </form>
+
+        <!-- 送信完了メッセージ -->
+        <div id="formDone" class="form-done" hidden>
+          <svg class="form-done__star" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+          </svg>
+          <p class="form-done__title">THANK YOU</p>
+          <p class="form-done__text">
+            送信ありがとうございました。<br>
+            3営業日以内に担当者よりご連絡いたします。
+          </p>
+          <a class="btn" href="index.html">TOP<span class="btn__ja">トップへ戻る</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--paper">
+      <div class="container--narrow">
+        <div class="sec-head reveal">
+          <p class="sec-head__label">FAQ</p>
+          <h2 class="sec-head__title">よくあるご質問</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>小規模な開発や部分的なご依頼でも相談できますか?</summary>
+            <p class="faq-item__a">はい、可能です。数週間程度の小規模な開発から、要件定義のみ・改善のみといった部分的なご支援まで、規模を問わず柔軟に対応いたします。まずはお気軽にご相談ください。</p>
+          </details>
+          <details class="faq-item reveal" data-delay="1">
+            <summary>お見積りやご相談に費用はかかりますか?</summary>
+            <p class="faq-item__a">初回のご相談・お見積りは無料です。内容をお伺いしたうえで、概算のお見積りと進め方のご提案をいたします。ご契約前に費用が発生することはありません。</p>
+          </details>
+          <details class="faq-item reveal" data-delay="2">
+            <summary>対応エリアを教えてください。</summary>
+            <p class="faq-item__a">全国対応しております。お打ち合わせはオンラインを基本としており、必要に応じて首都圏を中心にご訪問も可能です。まずはご希望をお聞かせください。</p>
+          </details>
+          <details class="faq-item reveal" data-delay="3">
+            <summary>返信までどのくらいかかりますか?</summary>
+            <p class="faq-item__a">原則として3営業日以内にご連絡いたします。土日祝日にいただいたお問い合わせは、翌営業日以降の対応となります。1週間経っても返信がない場合は、お手数ですがお電話にてご確認ください。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <svg class="site-footer__star" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+    </svg>
+    <a class="totop" href="#" aria-label="ページ上部へ戻る">↑</a>
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="index.html">
+            <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+            </svg>
+            <span class="brand__text">
+              <span class="brand__ja">株式会社Freedom</span>
+              <span class="brand__en">FREEDOM.INC</span>
+            </span>
+          </a>
+          <address class="site-footer__addr">
+            〒***-****　東京都***区***　*-*-*　***ビル *F<br>
+            TEL：03-****-****（受付時間：平日 10:00〜18:00）
+          </address>
+        </div>
+        <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+          <div class="site-footer__nav-col">
+            <h3>MENU</h3>
+            <ul>
+              <li><a href="index.html">トップ</a></li>
+              <li><a href="about.html">私たちについて</a></li>
+              <li><a href="services.html">事業内容</a></li>
+              <li><a href="news.html">お知らせ</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__nav-col">
+            <h3>OTHERS</h3>
+            <ul>
+              <li><a href="recruit.html">採用情報</a></li>
+              <li><a href="contact.html">お問い合わせ</a></li>
+              <li><a href="privacy.html">プライバシーポリシー</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">© <span id="copyYear">2026</span> Freedom.inc All Rights Reserved.</p>
+        <div class="site-footer__links">
+          <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
