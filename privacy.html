@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー | 株式会社Freedom - Freedom.inc</title>
+  <meta name="description" content="株式会社Freedomのプライバシーポリシー(個人情報保護方針)。個人情報の取得方法、利用目的、第三者提供、安全管理措置、開示請求の手続き等について定めています。">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ---- privacy.html 固有スタイル ---- */
+    .policy { counter-reset: policy; }
+    .policy__intro {
+      color: var(--c-text-sub);
+      padding-bottom: clamp(32px, 5vw, 48px);
+      margin-bottom: clamp(32px, 5vw, 48px);
+      border-bottom: 1px solid var(--c-line);
+    }
+    .policy__date {
+      margin-top: 20px;
+      font-size: 12.5px; letter-spacing: 0.08em; color: var(--c-gray-500);
+      text-align: right;
+    }
+    .policy-sec { margin-bottom: clamp(44px, 7vw, 64px); }
+    .policy-sec:last-of-type { margin-bottom: 0; }
+    .policy-sec__title {
+      counter-increment: policy;
+      display: flex; align-items: baseline; gap: 18px;
+      font-size: clamp(17px, 2.4vw, 20px); font-weight: 900; letter-spacing: 0.06em;
+      line-height: 1.6;
+      padding: 0 0 14px 0;
+      border-bottom: 2px solid var(--c-navy-800);
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .policy-sec__title::before {
+      content: counter(policy, decimal-leading-zero);
+      flex: none;
+      font-family: var(--font-en); font-size: clamp(22px, 3vw, 28px); font-weight: 800;
+      line-height: 1;
+      color: transparent; -webkit-text-stroke: 1.2px var(--c-navy-600);
+    }
+    .policy-sec__title::after {
+      content: ''; position: absolute; left: 0; bottom: -2px;
+      width: 64px; height: 2px; background: var(--c-navy-400);
+    }
+    .policy-sec p { color: var(--c-text-sub); }
+    .policy-sec p + p { margin-top: 14px; }
+    .policy-sec ul {
+      margin-top: 14px;
+      display: grid; gap: 8px;
+      color: var(--c-text-sub);
+    }
+    .policy-sec ul li {
+      position: relative;
+      padding-left: 20px;
+    }
+    .policy-sec ul li::before {
+      content: ''; position: absolute; left: 2px; top: 0.85em;
+      width: 8px; height: 2px; background: var(--c-navy-500);
+    }
+    .policy-contact {
+      margin-top: 18px;
+      padding: 26px 30px;
+      background: var(--c-paper);
+      border-left: 3px solid var(--c-navy-800);
+      font-size: 14px; line-height: 2.1;
+    }
+    .policy-contact strong { display: block; letter-spacing: 0.08em; color: var(--c-navy-900); }
+    .policy__sign {
+      margin-top: clamp(48px, 8vw, 72px);
+      padding-top: clamp(28px, 4vw, 40px);
+      border-top: 1px solid var(--c-line);
+      text-align: right;
+      font-weight: 700; letter-spacing: 0.08em; line-height: 2.2;
+    }
+    .policy__sign small { display: block; font-size: 12px; font-weight: 400; color: var(--c-gray-500); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header is-solid" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__ja">株式会社Freedom</span>
+          <span class="brand__en">FREEDOM.INC</span>
+        </span>
+      </a>
+      <nav class="global-nav" id="globalNav" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="about.html"><span class="nav-en">ABOUT</span><span class="nav-ja">私たちについて</span></a></li>
+          <li><a href="services.html"><span class="nav-en">SERVICE</span><span class="nav-ja">事業内容</span></a></li>
+          <li><a href="news.html"><span class="nav-en">NEWS</span><span class="nav-ja">お知らせ</span></a></li>
+          <li><a href="recruit.html"><span class="nav-en">RECRUIT</span><span class="nav-ja">採用情報</span></a></li>
+        </ul>
+        <a class="global-nav__cta" href="contact.html">CONTACT<small>お問い合わせ</small></a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開閉" aria-expanded="false" aria-controls="globalNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Page hero -->
+    <section class="page-hero">
+      <svg class="page-hero__star" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+      </svg>
+      <div class="container">
+        <h1 class="page-hero__en reveal">PRIVACY POLICY</h1>
+        <p class="page-hero__ja reveal" data-delay="1">プライバシーポリシー</p>
+        <ol class="breadcrumb reveal" data-delay="2">
+          <li><a href="index.html">トップ</a></li>
+          <li>プライバシーポリシー</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Policy body -->
+    <section class="section">
+      <div class="container--narrow policy">
+
+        <div class="policy__intro reveal">
+          <p>
+            株式会社Freedom(以下「当社」といいます)は、当社の事業活動において取り扱うお客様・お取引先・採用応募者等の個人情報について、
+            個人情報の保護に関する法律(個人情報保護法)その他の関係法令を遵守し、以下の方針に基づき適切に取り扱います。
+          </p>
+          <p class="policy__date">
+            制定日：20**年*月*日<br>
+            最終改定日：20**年*月*日
+          </p>
+        </div>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">基本方針</h2>
+          <p>
+            当社は、個人情報が個人の重要な財産であることを認識し、その適切な取得・利用・管理を行うことを社会的責務と考えます。
+            全ての役員および従業員に対して個人情報保護の重要性を周知し、本方針に沿った運用を徹底します。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">個人情報の定義</h2>
+          <p>
+            本方針における「個人情報」とは、個人情報保護法に定める個人情報をいい、氏名、生年月日、住所、電話番号、メールアドレスその他の記述等により
+            特定の個人を識別できる情報(他の情報と容易に照合でき、それにより特定の個人を識別できるものを含みます)を指します。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">個人情報の取得方法</h2>
+          <p>
+            当社は、適法かつ公正な手段により個人情報を取得します。主に以下の場面で取得します。
+          </p>
+          <ul>
+            <li>当社ウェブサイトのお問い合わせフォームへのご入力</li>
+            <li>お電話・メール・名刺交換等によるご連絡</li>
+            <li>契約の締結・履行に伴うお取引先からのご提供</li>
+            <li>採用選考に際してのご応募・応募書類のご提出</li>
+          </ul>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">個人情報の利用目的</h2>
+          <p>当社は、取得した個人情報を以下の目的の範囲内で利用します。</p>
+          <ul>
+            <li>お問い合わせ・ご相談への対応およびご連絡</li>
+            <li>お見積り・ご提案等の営業活動、契約の締結および履行</li>
+            <li>採用選考、採用に関するご連絡および入社手続き</li>
+            <li>当社サービスの品質向上・改善および新サービスの開発</li>
+            <li>当社からのお知らせ・ご案内の送付</li>
+            <li>法令等に基づく対応</li>
+          </ul>
+          <p>上記の利用目的を超えて利用する場合は、あらかじめご本人の同意を得るものとします。</p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">個人情報の第三者提供</h2>
+          <p>
+            当社は、法令に基づく場合、人の生命・身体または財産の保護のために必要がある場合等、
+            個人情報保護法が認める場合を除き、あらかじめご本人の同意を得ることなく個人情報を第三者に提供しません。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">個人情報の取り扱いの委託</h2>
+          <p>
+            当社は、利用目的の達成に必要な範囲において、個人情報の取り扱いの全部または一部を外部に委託する場合があります。
+            その際は、個人情報を適切に取り扱うと認められる委託先を選定し、契約等により必要かつ適切な監督を行います。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">安全管理措置</h2>
+          <p>
+            当社は、個人情報の漏えい、滅失または毀損の防止その他の安全管理のため、組織的・人的・物理的・技術的な安全管理措置を講じます。
+            また、従業員に対する教育・監督を行い、取り扱い状況を定期的に点検し、必要に応じて是正します。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">Cookie(クッキー)等の利用について</h2>
+          <p>
+            当社ウェブサイトでは、利便性の向上やアクセス状況の把握のためにCookieおよびこれに類する技術を利用する場合があります。
+            Cookieにより特定の個人を識別することはありません。ブラウザの設定によりCookieの受け入れを拒否することが可能ですが、
+            その場合、当サイトの一部機能がご利用いただけないことがあります。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">開示・訂正・利用停止・削除の請求</h2>
+          <p>
+            当社は、ご本人から自己の個人情報について開示・訂正・追加・利用停止・削除等のご請求があった場合、
+            ご本人であることを確認のうえ、法令に従い合理的な期間内に誠実に対応します。
+            ご請求は下記「お問い合わせ窓口」までご連絡ください。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">法令の遵守と本方針の見直し</h2>
+          <p>
+            当社は、個人情報に関する法令およびその他の規範を遵守するとともに、社会情勢の変化や事業内容の変更等に応じて本方針を継続的に見直し、
+            改善に努めます。本方針を改定した場合は、当ウェブサイトに掲載する方法により公表します。
+          </p>
+        </section>
+
+        <section class="policy-sec reveal">
+          <h2 class="policy-sec__title">お問い合わせ窓口</h2>
+          <p>個人情報の取り扱いに関するご質問・ご請求は、下記窓口までお願いいたします。</p>
+          <div class="policy-contact">
+            <strong>株式会社Freedom 個人情報お問い合わせ窓口</strong>
+            TEL：03-****-****<br>
+            受付時間：平日 10:00〜18:00（土日祝・年末年始を除く）
+          </div>
+        </section>
+
+        <p class="policy__sign reveal">
+          <small>以上</small>
+          株式会社Freedom<br>
+          代表取締役 ** **
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <svg class="site-footer__star" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+    </svg>
+    <a class="totop" href="#" aria-label="ページ上部へ戻る">↑</a>
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="index.html">
+            <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+            </svg>
+            <span class="brand__text">
+              <span class="brand__ja">株式会社Freedom</span>
+              <span class="brand__en">FREEDOM.INC</span>
+            </span>
+          </a>
+          <address class="site-footer__addr">
+            〒***-****　東京都***区***　*-*-*　***ビル *F<br>
+            TEL：03-****-****（受付時間：平日 10:00〜18:00）
+          </address>
+        </div>
+        <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+          <div class="site-footer__nav-col">
+            <h3>MENU</h3>
+            <ul>
+              <li><a href="index.html">トップ</a></li>
+              <li><a href="about.html">私たちについて</a></li>
+              <li><a href="services.html">事業内容</a></li>
+              <li><a href="news.html">お知らせ</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__nav-col">
+            <h3>OTHERS</h3>
+            <ul>
+              <li><a href="recruit.html">採用情報</a></li>
+              <li><a href="contact.html">お問い合わせ</a></li>
+              <li><a href="privacy.html">プライバシーポリシー</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">© <span id="copyYear">2026</span> Freedom.inc All Rights Reserved.</p>
+        <div class="site-footer__links">
+          <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
