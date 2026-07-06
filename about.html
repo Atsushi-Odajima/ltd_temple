@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私たちについて | 株式会社Freedom - Freedom.inc</title>
+  <meta name="description" content="株式会社Freedomの企業情報ページ。ミッション「自由な発想が、次の当たり前をつくる。」、大切にする価値観、逆さの星に込めたロゴストーリー、代表メッセージ、会社概要、沿革をご紹介します。">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ===== about.html page-specific styles ===== */
+
+    /* Mission statement */
+    .mission-copy {
+      font-size: clamp(24px, 4vw, 44px);
+      font-weight: 900;
+      line-height: 1.7;
+      letter-spacing: 0.08em;
+      text-align: center;
+      color: var(--c-navy-900);
+    }
+    .mission-copy .mission-copy__en {
+      display: block;
+      margin-top: 18px;
+      font-family: var(--font-en);
+      font-size: clamp(12px, 1.4vw, 15px);
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      color: var(--c-navy-500);
+    }
+    .mission-lead {
+      margin: clamp(32px, 5vw, 48px) auto 0;
+      max-width: 42em;
+      text-align: center;
+      color: var(--c-text-sub);
+    }
+    @media (max-width: 560px) {
+      .mission-lead { text-align: left; }
+    }
+
+    /* Value cards (based on .svc-card) */
+    .value-card .svc-card__icon svg { stroke: currentColor; fill: none; stroke-width: 1.4; }
+
+    /* Logo story */
+    .logo-story {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(40px, 6vw, 88px);
+      align-items: center;
+    }
+    .logo-story__visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--c-line-dark);
+      background:
+        radial-gradient(circle at 50% 42%, rgba(53, 101, 192, 0.28), transparent 62%),
+        rgba(255, 255, 255, 0.02);
+    }
+    .logo-story__visual svg { width: 58%; height: auto; }
+    .logo-story__body p { color: rgba(244, 246, 249, 0.78); margin-bottom: 1.4em; }
+    .logo-story__body p:last-child { margin-bottom: 0; }
+    .logo-story__concept {
+      font-size: clamp(20px, 2.6vw, 28px);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      line-height: 1.6;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .logo-story__concept small {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.36em;
+      color: var(--c-navy-300);
+    }
+    @media (max-width: 900px) {
+      .logo-story { grid-template-columns: 1fr; }
+      .logo-story__visual { max-width: 420px; margin-inline: auto; width: 100%; }
+    }
+
+    /* Message from president */
+    .message-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+      gap: clamp(36px, 6vw, 80px);
+      align-items: start;
+    }
+    .message-photo {
+      position: sticky;
+      top: calc(var(--header-h) + 24px);
+    }
+    .message-photo svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      box-shadow: 0 32px 64px -32px rgba(8, 21, 43, 0.45);
+    }
+    .message-photo__caption {
+      margin-top: 18px;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--c-text-sub);
+    }
+    .message-photo__caption strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      color: var(--c-ink);
+      margin-top: 4px;
+    }
+    .message-body__title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 900;
+      line-height: 1.7;
+      letter-spacing: 0.08em;
+      margin-bottom: clamp(24px, 4vw, 36px);
+      color: var(--c-navy-900);
+    }
+    .message-body p { color: var(--c-text-sub); margin-bottom: 1.6em; }
+    .message-body p:last-of-type { margin-bottom: 0; }
+    .message-sign {
+      margin-top: clamp(32px, 5vw, 44px);
+      text-align: right;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--c-text-sub);
+    }
+    .message-sign strong {
+      display: block;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: var(--c-ink);
+      margin-top: 4px;
+    }
+    @media (max-width: 900px) {
+      .message-grid { grid-template-columns: 1fr; }
+      .message-photo { position: static; max-width: 360px; }
+    }
+
+    /* History timeline */
+    .timeline {
+      position: relative;
+      margin-top: clamp(8px, 2vw, 16px);
+      padding-left: clamp(28px, 4vw, 40px);
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--c-navy-500), var(--c-gray-300));
+    }
+    .timeline__item {
+      position: relative;
+      padding-bottom: clamp(36px, 5vw, 56px);
+    }
+    .timeline__item:last-child { padding-bottom: 0; }
+    .timeline__item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1 * clamp(28px, 4vw, 40px) + 2px);
+      top: 9px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--c-white);
+      border: 2px solid var(--c-navy-600);
+      box-shadow: 0 0 0 4px rgba(35, 76, 152, 0.12);
+    }
+    .timeline__item--now::before {
+      background: var(--c-navy-600);
+      box-shadow: 0 0 0 6px rgba(35, 76, 152, 0.18);
+    }
+    .timeline__year {
+      font-family: var(--font-en);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--c-navy-600);
+    }
+    .timeline__title {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin: 6px 0 8px;
+    }
+    .timeline__text {
+      font-size: 13.5px;
+      color: var(--c-text-sub);
+      max-width: 46em;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header is-solid" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__ja">株式会社Freedom</span>
+          <span class="brand__en">FREEDOM.INC</span>
+        </span>
+      </a>
+      <nav class="global-nav" id="globalNav" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="about.html" class="is-current"><span class="nav-en">ABOUT</span><span class="nav-ja">私たちについて</span></a></li>
+          <li><a href="services.html"><span class="nav-en">SERVICE</span><span class="nav-ja">事業内容</span></a></li>
+          <li><a href="news.html"><span class="nav-en">NEWS</span><span class="nav-ja">お知らせ</span></a></li>
+          <li><a href="recruit.html"><span class="nav-en">RECRUIT</span><span class="nav-ja">採用情報</span></a></li>
+        </ul>
+        <a class="global-nav__cta" href="contact.html">CONTACT<small>お問い合わせ</small></a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開閉" aria-expanded="false" aria-controls="globalNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Page hero ===== -->
+    <section class="page-hero">
+      <svg class="page-hero__star" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+      </svg>
+      <div class="container">
+        <h1 class="page-hero__en reveal">ABOUT US</h1>
+        <p class="page-hero__ja reveal" data-delay="1">私たちについて</p>
+        <ol class="breadcrumb reveal" data-delay="2">
+          <li><a href="index.html">トップ</a></li>
+          <li>私たちについて</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Mission ===== -->
+    <section class="section" id="mission">
+      <div class="container--narrow">
+        <div class="sec-head sec-head--center reveal">
+          <p class="sec-head__label">Mission</p>
+          <h2 class="sec-head__title">ミッション</h2>
+        </div>
+        <p class="mission-copy reveal" data-delay="1">
+          自由な発想が、<br>次の当たり前をつくる。
+          <span class="mission-copy__en">THINK UPSIDE DOWN.</span>
+        </p>
+        <p class="mission-lead reveal" data-delay="2">
+          いま「当たり前」とされているものは、かつて誰かの自由な発想から生まれました。私たちFreedomは、常識や前提をいったん疑い、逆さから眺め直すことから仕事を始めます。ITソリューション、広告、アパレル、ECという領域の異なる4つの事業を通じて、業界の枠にとらわれない視点を掛け合わせ、お客様と社会に新しい価値を届けます。そうして生まれた価値が、いつか誰かの「次の当たり前」になる。それが私たちの目指す未来です。
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Vision / Value ===== -->
+    <section class="section section--paper" id="value" style="position: relative;">
+      <p class="watermark" style="top: 24px;" aria-hidden="true">VALUE</p>
+      <div class="container" style="position: relative;">
+        <div class="sec-head reveal">
+          <p class="sec-head__label">Our Values</p>
+          <h2 class="sec-head__title">私たちが大切にする3つの姿勢</h2>
+          <p class="sec-head__lead">ミッションを実現するために、Freedomの全員が日々の仕事で立ち返る行動指針です。</p>
+        </div>
+        <div class="card-grid">
+          <article class="svc-card value-card reveal" data-delay="1">
+            <p class="svc-card__num">VALUE 01</p>
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 46 46">
+                <path d="M23 42 L18 28 L4 27.6 L15.5 19 L11.5 5.5 L23 13.5 L34.5 5.5 L30.5 19 L42 27.6 L28 28 Z"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">逆さから見る</h3>
+            <p class="svc-card__en">Think Upside Down</p>
+            <p class="svc-card__text">「そういうものだから」を疑うことから始めます。前提をひっくり返して眺めたときに見えてくる違和感こそが、新しい価値の入り口だと考えます。</p>
+          </article>
+          <article class="svc-card value-card reveal" data-delay="2">
+            <p class="svc-card__num">VALUE 02</p>
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 46 46">
+                <path d="M6 30 C14 14, 32 14, 40 30"/>
+                <path d="M6 30 h34"/>
+                <path d="M32 22 l8 8 -8 8"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">越境する</h3>
+            <p class="svc-card__en">Cross the Border</p>
+            <p class="svc-card__text">IT・広告・アパレル・EC。事業も職種も飛び越えて知見を持ち寄るのがFreedomの流儀です。専門性の交差点にしか生まれないアイデアを大切にします。</p>
+          </article>
+          <article class="svc-card value-card reveal" data-delay="3">
+            <p class="svc-card__num">VALUE 03</p>
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 46 46">
+                <circle cx="23" cy="23" r="17"/>
+                <path d="M15 23.5 l6 6 L32 17"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">最後までやり切る</h3>
+            <p class="svc-card__en">See It Through</p>
+            <p class="svc-card__text">発想の自由には、成果への責任が伴います。企画で終わらせず、開発・運用・改善まで伴走し、数字と品質で応えるまでが私たちの仕事です。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Logo story ===== -->
+    <section class="section section--dark" id="logo">
+      <div class="container">
+        <div class="sec-head reveal">
+          <p class="sec-head__label">Logo Story</p>
+          <h2 class="sec-head__title">逆さの星に込めたもの</h2>
+        </div>
+        <div class="logo-story">
+          <div class="logo-story__visual reveal" data-delay="1">
+            <svg viewBox="0 0 100 100" role="img" aria-label="株式会社Freedomのロゴ 逆さの星">
+              <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="logo-story__body reveal" data-delay="2">
+            <p class="logo-story__concept">当たり前を、逆さから見る。<small>OUR LOGO CONCEPT</small></p>
+            <p>Freedomのロゴは、逆さまに描かれたひとつの星です。星は、誰もが夜空に「見上げる」ものの象徴。目標、憧れ、正解——世の中で当たり前とされている見方そのものです。</p>
+            <p>私たちはその星を、あえて逆さにしました。上下をひっくり返した瞬間、見慣れたかたちは違和感に変わり、そこに問いが生まれます。「本当にそうだろうか」「別のやり方があるのではないか」。その問いこそが、自由な発想の出発点です。</p>
+            <p>常識や前提を疑い、逆さから眺め直すことで、まだ誰も気づいていない価値を見つけ出す。この逆さの星は、Freedomという社名に込めた「発想の自由」を貫くという、私たちの意思表明です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Message ===== -->
+    <section class="section" id="message">
+      <div class="container">
+        <div class="sec-head reveal">
+          <p class="sec-head__label">Message</p>
+          <h2 class="sec-head__title">代表メッセージ</h2>
+        </div>
+        <div class="message-grid">
+          <div class="message-photo reveal" data-delay="1">
+            <svg viewBox="0 0 340 420" role="img" aria-label="代表取締役の写真(準備中)">
+              <defs>
+                <linearGradient id="msgGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#050d1c"/>
+                  <stop offset="0.55" stop-color="#0d1f3f"/>
+                  <stop offset="1" stop-color="#1a3a75"/>
+                </linearGradient>
+              </defs>
+              <rect width="340" height="420" fill="url(#msgGrad)"/>
+              <g transform="translate(170 210) scale(1.15)" opacity="0.22">
+                <path d="M0,46 L-10.87,14.97 L-43.75,14.21 L-17.59,-5.72 L-27.04,-37.21 L0,-18.5 L27.04,-37.21 L17.59,-5.72 L43.75,14.21 L10.87,14.97 Z" fill="#ffffff"/>
+              </g>
+              <text x="170" y="386" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="Inter, sans-serif" font-size="11" letter-spacing="4">FREEDOM.INC</text>
+            </svg>
+            <p class="message-photo__caption">代表取締役<strong>** **</strong></p>
+          </div>
+          <div class="message-body reveal" data-delay="2">
+            <h3 class="message-body__title">常識を疑うことは、<br>誠実であることだと思う。</h3>
+            <p>「当たり前を、逆さから見る」。この言葉を、私たちは創業のときから大切にしてきました。奇をてらうためではありません。業界の慣習や「昔からこうだから」という理由だけで残っている仕組みを、そのままお客様に手渡すことは、誠実ではないと考えているからです。常識を一度疑い、それでも正しいと確かめられたものだけを届ける。遠回りに見えて、それが信頼への最短距離だと信じています。</p>
+            <p>Freedomは、ITソリューション、広告、アパレル、ECという4つの事業を営んでいます。一見ばらばらに見えるかもしれませんが、私たちにとっては地続きです。テクノロジーで仕組みをつくり、広告で想いを届け、アパレルでかたちにし、ECでお客様と直接つながる。異なる現場で得た学びを互いに持ち寄れることが、単一事業の会社にはない私たちの強みであり、自由な発想を生む土壌になっています。</p>
+            <p>お客様に対して約束するのは、課題の表面をなぞる提案ではなく、前提から問い直すパートナーであることです。そして社員に対しては、肩書や部署に縛られず挑戦できる環境と、挑戦の結果に誠実に向き合う文化を守り続けることを約束します。自由とは放任ではなく、考え抜く責任とセットである——それが私たちの考える「Freedom」です。</p>
+            <p>次の当たり前は、いつも小さな違和感から始まります。私たちはこれからも、逆さの星のように世界を眺めながら、お客様と社会にとって本当に価値のあるものをつくり続けてまいります。今後とも変わらぬご支援をよろしくお願いいたします。</p>
+            <p class="message-sign">株式会社Freedom 代表取締役<strong>** **</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Company overview ===== -->
+    <section class="section section--paper" id="company" style="position: relative;">
+      <p class="watermark" style="top: 24px;" aria-hidden="true">COMPANY</p>
+      <div class="container--narrow" style="position: relative;">
+        <div class="sec-head reveal">
+          <p class="sec-head__label">Company</p>
+          <h2 class="sec-head__title">会社概要</h2>
+        </div>
+        <dl class="def-table reveal" data-delay="1">
+          <div>
+            <dt>社名</dt>
+            <dd>株式会社Freedom(英文名称: Freedom.inc)</dd>
+          </div>
+          <div>
+            <dt>所在地</dt>
+            <dd>〒***-****　東京都***区***　*-*-*　***ビル *F</dd>
+          </div>
+          <div>
+            <dt>設立</dt>
+            <dd>20**年*月</dd>
+          </div>
+          <div>
+            <dt>資本金</dt>
+            <dd>***万円</dd>
+          </div>
+          <div>
+            <dt>代表者</dt>
+            <dd>代表取締役 ** **</dd>
+          </div>
+          <div>
+            <dt>従業員数</dt>
+            <dd>**名(2026年*月現在)</dd>
+          </div>
+          <div>
+            <dt>事業内容</dt>
+            <dd>ITソリューション事業 / 広告事業 / アパレル事業 / EC事業</dd>
+          </div>
+          <div>
+            <dt>取引銀行</dt>
+            <dd>***銀行 ***支店</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== History ===== -->
+    <section class="section" id="history">
+      <div class="container--narrow">
+        <div class="sec-head reveal">
+          <p class="sec-head__label">History</p>
+          <h2 class="sec-head__title">沿革</h2>
+          <p class="sec-head__lead">小さな違和感から始まった挑戦は、事業の垣根を越えながら、いまも続いています。</p>
+        </div>
+        <ol class="timeline">
+          <li class="timeline__item reveal">
+            <p class="timeline__year">20**年</p>
+            <h3 class="timeline__title">創業</h3>
+            <p class="timeline__text">「当たり前を、逆さから見る。」を合言葉に、東京都***区にて株式会社Freedomを設立。</p>
+          </li>
+          <li class="timeline__item reveal" data-delay="1">
+            <p class="timeline__year">20**年</p>
+            <h3 class="timeline__title">IT事業開始</h3>
+            <p class="timeline__text">受託開発・保守運用を中心とするITソリューション事業を開始。企業の業務システムやWebサービスの開発支援を本格化。</p>
+          </li>
+          <li class="timeline__item reveal" data-delay="2">
+            <p class="timeline__year">20**年</p>
+            <h3 class="timeline__title">広告事業開始</h3>
+            <p class="timeline__text">開発現場で培ったデータ活用の知見を活かし、広告事業へ参入。企画からクリエイティブ、運用改善までを一貫して提供。</p>
+          </li>
+          <li class="timeline__item reveal" data-delay="1">
+            <p class="timeline__year">20**年</p>
+            <h3 class="timeline__title">アパレルブランド立ち上げ</h3>
+            <p class="timeline__text">「発想の自由をかたちに」をテーマに自社アパレルブランドを立ち上げ。企画・生産から販売までを自社で手がける体制を構築。</p>
+          </li>
+          <li class="timeline__item reveal" data-delay="2">
+            <p class="timeline__year">20**年</p>
+            <h3 class="timeline__title">EC事業本格化</h3>
+            <p class="timeline__text">自社ブランドの販売基盤として育てたECノウハウを外部にも展開し、EC事業として本格化。サイト構築から運営代行まで支援領域を拡大。</p>
+          </li>
+          <li class="timeline__item timeline__item--now reveal" data-delay="1">
+            <p class="timeline__year">現在</p>
+            <h3 class="timeline__title">4事業を軸に、次の当たり前へ</h3>
+            <p class="timeline__text">IT・広告・アパレル・ECの4事業を掛け合わせ、業界の枠を越えた価値づくりに挑戦し続けています。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 共通CTA帯 -->
+  <section class="cta-band">
+    <svg class="cta-band__star" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+    </svg>
+    <div class="container">
+      <p class="cta-band__en reveal">LET'S TALK<br>WITH FREEDOM.</p>
+      <p class="cta-band__text reveal" data-delay="1">事業のご相談、協業のご提案、採用エントリーなど、<br>まずはお気軽にお問い合わせください。</p>
+      <a class="btn btn--invert reveal" data-delay="2" href="contact.html">CONTACT<span class="btn__ja">お問い合わせ</span></a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <svg class="site-footer__star" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+    </svg>
+    <a class="totop" href="#" aria-label="ページ上部へ戻る">↑</a>
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="index.html">
+            <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
+            </svg>
+            <span class="brand__text">
+              <span class="brand__ja">株式会社Freedom</span>
+              <span class="brand__en">FREEDOM.INC</span>
+            </span>
+          </a>
+          <address class="site-footer__addr">
+            〒***-****　東京都***区***　*-*-*　***ビル *F<br>
+            TEL：03-****-****（受付時間：平日 10:00〜18:00）
+          </address>
+        </div>
+        <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+          <div class="site-footer__nav-col">
+            <h3>MENU</h3>
+            <ul>
+              <li><a href="index.html">トップ</a></li>
+              <li><a href="about.html">私たちについて</a></li>
+              <li><a href="services.html">事業内容</a></li>
+              <li><a href="news.html">お知らせ</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__nav-col">
+            <h3>OTHERS</h3>
+            <ul>
+              <li><a href="recruit.html">採用情報</a></li>
+              <li><a href="contact.html">お問い合わせ</a></li>
+              <li><a href="privacy.html">プライバシーポリシー</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">© <span id="copyYear">2026</span> Freedom.inc All Rights Reserved.</p>
+        <div class="site-footer__links">
+          <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
