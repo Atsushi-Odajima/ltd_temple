@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お知らせ | 株式会社Freedom - Freedom.inc</title>
   <meta name="description" content="株式会社Freedom(Freedom.inc)のお知らせ一覧です。プレスリリース、サービス、アパレル、採用に関する最新情報をお届けします。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="株式会社Freedom - Freedom.inc">
+  <meta property="og:title" content="お知らせ | 株式会社Freedom - Freedom.inc">
+  <meta property="og:description" content="株式会社Freedom(Freedom.inc)のお知らせ一覧です。プレスリリース、サービス、アパレル、採用に関する最新情報をお届けします。">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     /* ---- news.html 固有スタイル ---- */
@@ -38,15 +44,15 @@
       display: flex; align-items: center; justify-content: center; gap: 12px;
       margin-top: clamp(40px, 6vw, 64px);
     }
-    .pagination a {
+    .pagination span {
       display: flex; align-items: center; justify-content: center;
       width: 46px; height: 46px;
       font-family: var(--font-en); font-size: 13px; font-weight: 700; letter-spacing: 0.05em;
       border: 1px solid var(--c-gray-300); color: var(--c-gray-600);
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     }
-    .pagination a:hover { border-color: var(--c-navy-500); color: var(--c-navy-600); }
-    .pagination a.is-current {
+    .pagination span:hover { border-color: var(--c-navy-500); color: var(--c-navy-600); }
+    .pagination span.is-current {
       background: var(--c-navy-800); border-color: var(--c-navy-800); color: #fff;
       pointer-events: none;
     }
@@ -87,7 +93,7 @@
   <main>
 
     <!-- Page hero -->
-    <div class="page-hero">
+    <section class="page-hero">
       <svg class="page-hero__star" viewBox="0 0 100 100" aria-hidden="true">
         <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
       </svg>
@@ -99,7 +105,7 @@
           <li>お知らせ</li>
         </ol>
       </div>
-    </div>
+    </section>
 
     <!-- News list -->
     <section class="section">
@@ -111,7 +117,7 @@
         </div>
 
         <!-- カテゴリフィルタ -->
-        <div class="news-filter reveal" role="tablist" aria-label="カテゴリで絞り込む">
+        <div class="news-filter reveal" aria-label="カテゴリで絞り込む">
           <button class="news-filter__btn is-active" type="button" data-filter="all" aria-pressed="true">ALL</button>
           <button class="news-filter__btn" type="button" data-filter="press" aria-pressed="false">PRESS</button>
           <button class="news-filter__btn" type="button" data-filter="service" aria-pressed="false">SERVICE</button>
@@ -121,76 +127,76 @@
 
         <ul class="news-list" id="newsList">
           <li class="news-item reveal" data-cat="press">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2026-06-02">2026.06.02</time>
               <span class="news-item__cat">PRESS</span>
-              <p class="news-item__title">コーポレートサイトをリニューアルしました</p>
+              <span class="news-item__title">コーポレートサイトをリニューアルしました</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
           <li class="news-item reveal" data-cat="service" data-delay="1">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2026-05-15">2026.05.15</time>
               <span class="news-item__cat">SERVICE</span>
-              <p class="news-item__title">EC運営代行サービスの提供範囲を拡大しました</p>
+              <span class="news-item__title">EC運営代行サービスの提供範囲を拡大しました</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
           <li class="news-item reveal" data-cat="press" data-delay="2">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2026-04-01">2026.04.01</time>
               <span class="news-item__cat">PRESS</span>
-              <p class="news-item__title">新年度に伴う組織体制変更のお知らせ</p>
+              <span class="news-item__title">新年度に伴う組織体制変更のお知らせ</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
           <li class="news-item reveal" data-cat="apparel" data-delay="3">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2026-03-10">2026.03.10</time>
               <span class="news-item__cat">APPAREL</span>
-              <p class="news-item__title">自社アパレルブランド 2026 Spring Collection を公開しました</p>
+              <span class="news-item__title">自社アパレルブランド 2026 Spring Collection を公開しました</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
           <li class="news-item reveal" data-cat="recruit" data-delay="4">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2026-02-20">2026.02.20</time>
               <span class="news-item__cat">RECRUIT</span>
-              <p class="news-item__title">2027年新卒採用エントリーを開始しました</p>
+              <span class="news-item__title">2027年新卒採用エントリーを開始しました</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
           <li class="news-item reveal" data-cat="press">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2026-01-08">2026.01.08</time>
               <span class="news-item__cat">PRESS</span>
-              <p class="news-item__title">年始のご挨拶と営業開始のお知らせ</p>
+              <span class="news-item__title">年始のご挨拶と営業開始のお知らせ</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
           <li class="news-item reveal" data-cat="service" data-delay="1">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2025-12-01">2025.12.01</time>
               <span class="news-item__cat">SERVICE</span>
-              <p class="news-item__title">クラウド移行支援サービスの提供を開始しました</p>
+              <span class="news-item__title">クラウド移行支援サービスの提供を開始しました</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
           <li class="news-item reveal" data-cat="apparel" data-delay="2">
-            <a class="news-item__link" href="#">
+            <div class="news-item__link">
               <time class="news-item__date" datetime="2025-11-05">2025.11.05</time>
               <span class="news-item__cat">APPAREL</span>
-              <p class="news-item__title">ポップアップストアを都内**にて期間限定オープンしました</p>
+              <span class="news-item__title">ポップアップストアを都内***にて期間限定オープンしました</span>
               <span class="news-item__arrow">→</span>
-            </a>
+            </div>
           </li>
         </ul>
 
         <!-- ページネーション(ダミー) -->
         <nav class="pagination reveal" aria-label="ページ送り">
-          <a href="#" class="is-current" aria-current="page">1</a>
-          <a href="#">2</a>
-          <a href="#" aria-label="次のページへ">→</a>
+          <span class="is-current" aria-current="page">1</span>
+          <span>2</span>
+          <span aria-label="次のページへ">→</span>
         </nav>
       </div>
     </section>

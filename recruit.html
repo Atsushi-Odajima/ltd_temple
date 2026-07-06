@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>採用情報 | 株式会社Freedom - Freedom.inc</title>
   <meta name="description" content="株式会社Freedom(Freedom.inc)の採用情報です。ITソリューション・広告・アパレル・ECの事業を越境しながら、自由な発想で挑戦できる仲間を募集しています。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="株式会社Freedom - Freedom.inc">
+  <meta property="og:title" content="採用情報 | 株式会社Freedom - Freedom.inc">
+  <meta property="og:description" content="株式会社Freedom(Freedom.inc)の採用情報です。ITソリューション・広告・アパレル・ECの事業を越境しながら、自由な発想で挑戦できる仲間を募集しています。">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     /* ---- recruit.html 固有スタイル ---- */
@@ -58,10 +64,12 @@
     }
     .job-card summary:hover::after { border-color: var(--c-navy-500); }
     .job-card__label {
+      display: block;
       font-family: var(--font-en); font-size: 11px; font-weight: 700; letter-spacing: 0.26em;
       color: var(--c-navy-500); text-transform: uppercase;
     }
     .job-card__title {
+      display: block;
       font-size: 19px; font-weight: 900; letter-spacing: 0.06em; line-height: 1.5;
       margin-top: 10px; padding-right: 48px;
     }
@@ -75,6 +83,7 @@
       background: var(--c-gray-100); color: var(--c-gray-600);
     }
     .job-card__summary-text {
+      display: block;
       margin-top: 16px;
       font-size: 13.5px; color: var(--c-text-sub);
     }
@@ -141,7 +150,7 @@
   <main>
 
     <!-- Page hero -->
-    <div class="page-hero">
+    <section class="page-hero">
       <svg class="page-hero__star" viewBox="0 0 100 100" aria-hidden="true">
         <path d="M50,96 L39.13,64.97 L6.25,64.21 L32.41,44.28 L22.96,12.79 L50,31.5 L77.04,12.79 L67.59,44.28 L93.75,64.21 L60.87,64.97 Z"/>
       </svg>
@@ -153,7 +162,7 @@
           <li>採用情報</li>
         </ol>
       </div>
-    </div>
+    </section>
 
     <!-- 採用メッセージ -->
     <section class="section" style="position: relative;">
@@ -214,19 +223,19 @@
 
           <details class="job-card reveal">
             <summary>
-              <p class="job-card__label">Engineering</p>
-              <h3 class="job-card__title">ソフトウェアエンジニア</h3>
-              <div class="job-card__meta">
+              <span class="job-card__label">Engineering</span>
+              <span class="job-card__title">ソフトウェアエンジニア</span>
+              <span class="job-card__meta">
                 <span>正社員</span><span>東京都***区</span><span>リモート併用可</span>
-              </div>
-              <p class="job-card__summary-text">自社サービスおよびクライアントワークにおけるWebアプリケーションの設計・開発・運用を担当します。</p>
+              </span>
+              <span class="job-card__summary-text">自社サービスおよびクライアントワークにおけるWebアプリケーションの設計・開発・運用を担当します。</span>
             </summary>
             <div class="job-card__detail">
               <h4>業務内容</h4>
               <ul>
                 <li>Webアプリケーション・業務システムの設計、開発、運用</li>
                 <li>ECサイトや広告配信基盤など自社事業のシステム開発</li>
-                <li>クラウド環境(AWS等)の構築・移行支援</li>
+                <li>クラウド環境（AWS等）の構築・移行支援</li>
                 <li>技術選定やアーキテクチャ設計への参画</li>
               </ul>
               <h4>求める人物像</h4>
@@ -240,12 +249,12 @@
 
           <details class="job-card reveal" data-delay="1">
             <summary>
-              <p class="job-card__label">Direction / Marketing</p>
-              <h3 class="job-card__title">Webディレクター / 広告運用</h3>
-              <div class="job-card__meta">
+              <span class="job-card__label">Direction / Marketing</span>
+              <span class="job-card__title">Webディレクター / 広告運用</span>
+              <span class="job-card__meta">
                 <span>正社員</span><span>東京都***区</span><span>リモート併用可</span>
-              </div>
-              <p class="job-card__summary-text">Webサイト制作の進行管理と、運用型広告のプランニング・改善運用を担当します。</p>
+              </span>
+              <span class="job-card__summary-text">Webサイト制作の進行管理と、運用型広告のプランニング・改善運用を担当します。</span>
             </summary>
             <div class="job-card__detail">
               <h4>業務内容</h4>
@@ -266,12 +275,12 @@
 
           <details class="job-card reveal" data-delay="2">
             <summary>
-              <p class="job-card__label">E-Commerce</p>
-              <h3 class="job-card__title">ECサイト運営スタッフ</h3>
-              <div class="job-card__meta">
+              <span class="job-card__label">E-Commerce</span>
+              <span class="job-card__title">ECサイト運営スタッフ</span>
+              <span class="job-card__meta">
                 <span>正社員</span><span>東京都***区</span><span>リモート併用可</span>
-              </div>
-              <p class="job-card__summary-text">自社ECおよび運営代行案件における、サイト運営・販促企画・顧客対応を幅広く担当します。</p>
+              </span>
+              <span class="job-card__summary-text">自社ECおよび運営代行案件における、サイト運営・販促企画・顧客対応を幅広く担当します。</span>
             </summary>
             <div class="job-card__detail">
               <h4>業務内容</h4>
@@ -283,7 +292,7 @@
               </ul>
               <h4>求める人物像</h4>
               <ul>
-                <li>EC運営・通販業務の経験がある方(モール・自社EC不問)</li>
+                <li>EC運営・通販業務の経験がある方（モール・自社EC不問）</li>
                 <li>細やかな運用と大胆な企画の両方を楽しめる方</li>
                 <li>データを見て自ら改善のアイデアを出せる方</li>
               </ul>
@@ -292,12 +301,12 @@
 
           <details class="job-card reveal" data-delay="3">
             <summary>
-              <p class="job-card__label">Apparel</p>
-              <h3 class="job-card__title">アパレル企画</h3>
-              <div class="job-card__meta">
+              <span class="job-card__label">Apparel</span>
+              <span class="job-card__title">アパレル企画</span>
+              <span class="job-card__meta">
                 <span>正社員</span><span>東京都***区</span><span>リモート併用可</span>
-              </div>
-              <p class="job-card__summary-text">自社アパレルブランドの商品企画からプロモーションまで、ブランドづくりの中核を担います。</p>
+              </span>
+              <span class="job-card__summary-text">自社アパレルブランドの商品企画からプロモーションまで、ブランドづくりの中核を担います。</span>
             </summary>
             <div class="job-card__detail">
               <h4>業務内容</h4>
@@ -325,12 +334,12 @@
       <div class="container--narrow">
         <div class="sec-head reveal">
           <p class="sec-head__label">REQUIREMENTS</p>
-          <h2 class="sec-head__title">募集要項(全職種共通)</h2>
+          <h2 class="sec-head__title">募集要項（全職種共通）</h2>
         </div>
         <dl class="def-table reveal" data-delay="1">
           <div>
             <dt>雇用形態</dt>
-            <dd>正社員(試用期間あり)</dd>
+            <dd>正社員（試用期間あり）</dd>
           </div>
           <div>
             <dt>勤務地</dt>
@@ -338,11 +347,11 @@
           </div>
           <div>
             <dt>勤務時間</dt>
-            <dd>10:00〜19:00(フレックスタイム制あり)</dd>
+            <dd>10:00〜19:00（フレックスタイム制あり）</dd>
           </div>
           <div>
             <dt>休日・休暇</dt>
-            <dd>完全週休2日制(土・日)・祝日、年末年始休暇、有給休暇ほか</dd>
+            <dd>完全週休2日制（土・日）・祝日、年末年始休暇、有給休暇ほか</dd>
           </div>
           <div>
             <dt>給与</dt>
@@ -354,7 +363,7 @@
           </div>
           <div>
             <dt>選考フロー</dt>
-            <dd>書類選考 → 面接(2回) → 内定 ※状況によりオンライン面接に対応します</dd>
+            <dd>書類選考 → 面接（2回） → 内定 ※状況によりオンライン面接に対応します</dd>
           </div>
         </dl>
       </div>
