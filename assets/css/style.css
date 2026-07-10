@@ -88,6 +88,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .en { font-family: var(--font-en); }
 
+/* Brand wordmark: mirrored first "e" of Freedom */
+.e-flip { display: inline-block; transform: scaleX(-1); }
+
 .section { padding-block: clamp(88px, 12vw, 150px); }
 .section--paper { background: var(--c-paper); }
 .section--dark {
