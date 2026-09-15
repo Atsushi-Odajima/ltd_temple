@@ -3,6 +3,8 @@
 preview
 dist
 node_modules
+.env
+.env.*
 about.html
 contact.html
 news.html
