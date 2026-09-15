@@ -1,38 +1,30 @@
-# 株式会社Freedom — コーポレートサイト
+# Freedom — つくることから、自由をひろげる。
 
-株式会社Freedom(Freedom.inc)のコーポレートサイトです。
-モノクロ基調 × 濃紺ブルーのミニマルデザインで構成しています。
+会社設立に向けた構想と、決済・店舗運営分野の自主制作アプリを紹介するサイトです。
 
-## サイト構成
+## 公開内容
 
-| ページ | ファイル | 内容 |
-| --- | --- | --- |
-| トップ | `index.html` | ヒーロー / 私たちについて / 事業内容 / 強み / お知らせ / 採用 |
-| 私たちについて | `about.html` | ミッション / バリュー / ロゴストーリー / 代表メッセージ / 会社概要 / 沿革 |
-| 事業内容 | `services.html` | ITソリューション / 広告 / アパレル / EC の4事業と事業フロー |
-| お知らせ | `news.html` | カテゴリフィルタ付きニュース一覧 |
-| 採用情報 | `recruit.html` | 採用メッセージ / 募集職種 / 募集要項 |
-| お問い合わせ | `contact.html` | お問い合わせフォーム / FAQ |
-| プライバシーポリシー | `privacy.html` | 個人情報保護方針 |
+- ビル街、カード、QRコード付きレシートのメインビジュアル
+- About Freedom（会社設立構想）
+- Wire Pay / Any Pay / payCcount / ExPress / 個人店舗向けレジアプリ
+- 各アプリの画面紹介、拡大表示、デモ・リポジトリへのリンク
+- IT、Communication、Apparel、E-commerceの4領域
 
-## 技術構成
+## 構成
 
-- 静的 HTML / CSS / JavaScript(フレームワーク・ビルド不要)
-- 共通スタイル: `assets/css/style.css`(デザイントークンによるモノクロ×濃紺のデザインシステム)
-- 共通スクリプト: `assets/js/main.js`(ヘッダー制御・モバイルナビ・スクロール出現・フォームデモ)
-- ロゴ: 逆さにした星(`assets/img/logo.svg` / 各ページにインラインSVG)
-- 外部依存は Google Fonts(Inter / Noto Sans JP)のみ
+- `index.html`: 承認済みの1ページ構成
+- `assets/css/freedom.css`: スタイル
+- `assets/js/freedom.js`: 画面拡大ダイアログ
+- `assets/img/freedom/`: 掲載画像
+- `scripts/build.mjs`: 公開ファイルの生成と参照確認
+- `vercel.json`: Vercelのビルド・配信設定
 
-## ローカルでの確認方法
+Node.js 24で `npm run build` を実行すると、公開対象のみを `dist/` に生成します。
+VercelではFrameworkをOther、Build Commandを `npm run build`、Output Directoryを `dist` に設定します。
+外部依存パッケージはありません。フォントはGoogle Fontsを使用します。
 
-任意の静的サーバーで配信してください。例:
+旧デザインのHTMLは履歴参照用として保持していますが、公開対象に含みません。
+`preview/` はローカルでの方向性確認用で、Git・Vercelの公開対象外です。
+GitHub Pagesは手動実行時のみ同じ `dist/` を配信します。
 
-```bash
-python3 -m http.server 8000
-# → http://localhost:8000
-```
-
-## 備考
-
-- 住所・電話番号などの特定情報は `*` によるマスク表記です。公開時に実情報へ差し替えてください。
-- お問い合わせフォームはフロントエンドのみのデモ実装です。実運用時はフォーム送信先(API・フォームサービス等)の接続が必要です。
+決済画面の掲載データはデモです。会社設立・商用提供・顧客導入の実績は表明していません。

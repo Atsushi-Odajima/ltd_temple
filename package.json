@@ -1,0 +1,7 @@
+{
+  "name": "freedom-corporate-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "build": "node scripts/build.mjs" },
+  "engines": { "node": "24.x" }
+}

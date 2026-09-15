@@ -1,0 +1,11 @@
+.git
+.github
+preview
+dist
+node_modules
+about.html
+contact.html
+news.html
+privacy.html
+recruit.html
+services.html
