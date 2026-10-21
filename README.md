@@ -2,6 +2,26 @@
 
 会社設立に向けた構想と、決済・店舗運営分野の自主制作アプリを紹介するサイトです。
 
+## このリポジトリで紹介できること
+
+- アプリ一覧から詳細・画面拡大・関連デモへつなぐ、1ページのポートフォリオ導線。
+- [assets/css/freedom.css](assets/css/freedom.css) にまとめた色・余白・文字の設計。
+- [assets/js/freedom.js](assets/js/freedom.js) の画面拡大ダイアログ。
+- [scripts/build.mjs](scripts/build.mjs) による公開ファイル生成とローカル参照の検査。
+
+会社設立の構想と自主制作の紹介サイトです。掲載アプリのコードや決済処理自体は、それぞれの別リポジトリにあります。
+
+## ローカルで確認する
+
+Node.js **24.x**で、次を実行します。`dev` / `test` スクリプトはありません。
+
+```sh
+npm run build
+python -m http.server 8000 --bind 127.0.0.1 --directory dist
+```
+
+後半のプレビューにはPython 3系が必要です。http://localhost:8000 を開き、掲載リンクと拡大ダイアログを確認できます。
+
 ## 公開内容
 
 - ビル街、カード、QRコード付きレシートのメインビジュアル
