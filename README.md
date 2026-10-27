@@ -40,11 +40,14 @@ python -m http.server 8000 --bind 127.0.0.1 --directory dist
 - `vercel.json`: Vercelのビルド・配信設定
 
 Node.js 24で `npm run build` を実行すると、公開対象のみを `dist/` に生成します。
-VercelではFrameworkをOther、Build Commandを `npm run build`、Output Directoryを `dist` に設定します。
 外部依存パッケージはありません。フォントはGoogle Fontsを使用します。
 
+## 公開(デプロイ)
+
+本番サイトは **Cloudflare Pages** で公開しています: https://freedom-inc.pages.dev
+GitHubの `main` ブランチに反映されると自動でビルド・デプロイされます(Build Command: `npm run build` / Output Directory: `dist`)。
+
 旧デザインのHTMLは履歴参照用として保持していますが、公開対象に含みません。
-`preview/` はローカルでの方向性確認用で、Git・Vercelの公開対象外です。
-GitHub Pagesは手動実行時のみ同じ `dist/` を配信します。
+`preview/` はローカルでの方向性確認用で、Git・デプロイの公開対象外です。
 
 決済画面の掲載データはデモです。会社設立・商用提供・顧客導入の実績は表明していません。
