@@ -19,7 +19,6 @@ if (context) {
     }
     for (const face of sculpture(elapsed,spread)) {
       polygon(face);
-      for(const accent of face.accents) polygon(accent);
     }
     context.restore();
   }
