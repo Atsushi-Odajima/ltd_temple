@@ -36,7 +36,7 @@ npm run preview
 - `assets/css/freedom.css`：配色・書体・全ページのレイアウト・レスポンシブ表示・動きを減らす設定。
 - `assets/js/freedom.js`：メニュー、画像拡大ダイアログ、原寸表示、フォーカス復元。
 - `assets/js/form.mjs`：切れ目のある円環と斜めに流れる曲線を13層重ね、内側の2層に幾何学的なスリットを入れたオリジナルの幾何モデル。
-- `assets/js/motion.mjs`：TOPのCanvas描画・展開操作・停止・表示状態の管理。
+- `assets/js/motion.mjs`：TOPのCanvas描画・自動で繰り返す開閉・表示状態の管理。
 - `assets/img/freedom/open-form.svg`：静止時・JavaScript無効時の実画像。
 - `assets/img/freedom/concept-materials.webp`：TOPの考え方に添えたオリジナルのコンセプト画像（1200×800、約46KB）。実在のオフィスや顧客の写真ではありません。発想・設計・実装のシンボルとWeb／アプリの図はHTML内のSVGで描画しています。
 - `assets/img/freedom/`：作品のWebPスクリーンショット、OGP画像。
@@ -44,7 +44,7 @@ npm run preview
 - `public-files.json`：公開ページ・アセットディレクトリ・設定の明示リスト。
 - `scripts/build.mjs`：公開ファイルの検証とdist生成。
 - `scripts/build.test.mjs`：公開参照、CSS、srcset、OGP、ES module、パス境界の回帰テスト。
-- `scripts/motion.test.mjs`：reduced motion、停止、画面外・非表示タブ、Canvas非対応のテスト。
+- `scripts/motion.test.mjs`：自動開閉、reduced motion、画面外・非表示タブ、Canvas非対応のテスト。
 - `scripts/form.test.mjs`：円環を回転・展開しても描画範囲を超えず、座標が有限値になることを確認。
 - `scripts/preview.mjs`：Node標準ライブラリのみのローカル確認サーバー。
 - `_headers`：Cloudflare Pagesのヘッダー設定。
@@ -57,8 +57,8 @@ npm run preview
 
 TOPは、切れ目のある円環と斜めに流れる曲線を13層重ねたオリジナルの動的ビジュアルです。前後の面は無地とし、内側の2層だけに等間隔のスリットを設けています。表面に柄を貼るのではなく、重なりの中の構造として幾何学模様が見える構成です。文字記号や他社ロゴを直接使っていません。ヘッダー等の星形ロゴは維持しています。外部動画、WebGL、アニメーションライブラリは使っていません。最大30fps・最大1.5倍の描画解像度に制限し、画面外・非表示タブでは描画ループを停止します。
 
-- 「輪郭をひらく」で形を展開。「動きを止める」で一時停止。
-- OSの `prefers-reduced-motion: reduce` では静止表示し、形の変更も即時に切り替えます。
+- 操作ボタンは設けず、約12秒の周期で自動的にひらく・重なる動きと、ゆっくりした立体の回転を繰り返します。
+- OSの `prefers-reduced-motion: reduce` では静止表示します。
 - Canvasが使えない場合やJavaScript無効時は静止SVGを表示。本文、ページ移動、外部リンクはHTMLで動作。
 - 標準スクロールを維持。スクロール連動とページ遷移はCSS対応ブラウザーだけの段階的な機能拡張です。
 - キーボード用の本文スキップ、フォーカス表示、モバイルメニューのEsc操作。
