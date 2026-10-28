@@ -13,9 +13,13 @@ if (context) {
     context.clearRect(0,0,width,height);
     const scale = Math.min(width/900,height/720);
     context.save(); context.translate((width-900*scale)/2,(height-720*scale)/2); context.scale(scale,scale);
-    for (const face of sculpture(elapsed,spread)) {
+    function polygon(face) {
       context.beginPath(); face.points.forEach(([x,y],i)=>i?context.lineTo(x,y):context.moveTo(x,y));
       context.closePath(); context.fillStyle=face.fill; context.fill();
+    }
+    for (const face of sculpture(elapsed,spread)) {
+      polygon(face);
+      for(const accent of face.accents) polygon(accent);
     }
     context.restore();
   }

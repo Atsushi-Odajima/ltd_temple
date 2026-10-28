@@ -2,12 +2,14 @@
 
 ## 今回制作した素材
 
-- `assets/js/form.mjs` / `motion.mjs`：Freedomの既存の反転した星を元に、本作業で作成した幾何モデルと動作。外部映像・ストック画像・外部モデル・第三者ライブラリは未使用。
+- `assets/js/form.mjs` / `motion.mjs`：本作業で作成した円環の幾何モデルと動作。元の星の重なり・展開演出を円環へ変更。外部映像・外部モデル・第三者ライブラリは未使用。
 - `assets/img/freedom/open-form.svg`：上記モデルの静止画。`scripts/make-brand-art.mjs` で再生成できます。
-- `assets/img/freedom/og-freedom.jpg`：同じモデルとブランド文字を使った本作業のオリジナルOGP画像。
+- `assets/img/freedom/og-freedom.jpg`：星形のブランドモチーフとブランド文字を使った本作業のオリジナルOGP画像。
 - 追加の第三者素材に伴うライセンスはありません。既存ブランド資産の権利やリポジトリのライセンスを変更するものではありません。
 
 ## 2026-10-28 追加ビジュアル
+
+- 円環表面の模様：三角形・山形・平行線を独自に配置。サモアの幾何学的な反復表現を参考にし、特定のtatauの構成や意味を再現したものではありません。参考資料：[Samoan Art in the Tatau（米国国立公園局）](https://home.nps.gov/teachers/classrooms/samoan-art-in-the-tatau-tattoo.htm)。素材のコピーや画像の転載はしていません。
 
 - `assets/img/freedom/concept-materials.webp`：組み込みimagegenツールで生成した、紙と青い立体のコンセプト画像。生成後に1200×800のWebPへ最適化。実在する職場・社員・顧客・制作実績の写真として扱わない。
 - TOPの三つのシンボルとWeb／アプリの図：本作業で作成したインラインSVGと既存のFreedomロゴ。追加の第三者アイコンライブラリは未使用。
