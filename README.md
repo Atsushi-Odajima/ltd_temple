@@ -1,53 +1,81 @@
-# Freedom — つくることから、自由をひろげる。
+# Freedom
 
-会社設立に向けた構想と、決済・店舗運営分野の自主制作アプリを紹介するサイトです。
+Freedomの考え方と制作物を紹介する、会社設立前の制作ブランドのWebサイトです。ブランドを入口に、実際の制作物へ進む構成にしています。料金・納期・受注FAQ・個人プロフィールは掲載していません。
 
-## このリポジトリで紹介できること
+## ページ
 
-- アプリ一覧から詳細・画面拡大・関連デモへつなぐ、1ページのポートフォリオ導線。
-- [assets/css/freedom.css](assets/css/freedom.css) にまとめた色・余白・文字の設計。
-- [assets/js/freedom.js](assets/js/freedom.js) の画面拡大ダイアログ。
-- [scripts/build.mjs](scripts/build.mjs) による公開ファイル生成とローカル参照の検査。
+- `index.html`：オリジナルの動的ビジュアル、考え方、現在の領域、選んだ制作物。
+- `about.html`：ブランドの考え方、Web／アプリ制作、将来の会社設立・アパレル・ECの構想。現在の活動と構想を区別。
+- `works.html`：Webサイト3件とアプリ3件の自主制作。実画面・設計意図・公開リンク・画像拡大。
+- `contact.html`：ココナラの実在する窓口。フォーム基盤や送信処理はありません。
+- `404.html`：存在しないURLの案内。階層の深いURLでもTOPと制作物に戻れます。
 
-会社設立の構想と自主制作の紹介サイトです。掲載アプリのコードや決済処理自体は、それぞれの別リポジトリにあります。
+Web制作例は架空事業者を想定した自主制作です。掲載作品は、炉端と酒 灯、hair salon grace、緑整、Wire Pay、ExPress、個人店舗向けレジアプリ（公開名：黒レジ）の6件です。顧客からの受注実績・導入実績として紹介していません。Any PayとpayCcountの紹介・リンク・専用画像は取り除きました。各アプリ本体や別リポジトリは変更していません。
 
-## ローカルで確認する
+## 実行
 
-Node.js **24.x**で、次を実行します。`dev` / `test` スクリプトはありません。
+Node.js 24.x。実行・ビルドとも追加パッケージは不要です。
 
 ```sh
 npm run build
-python -m http.server 8000 --bind 127.0.0.1 --directory dist
+npm test
+npm run preview
 ```
 
-後半のプレビューにはPython 3系が必要です。http://localhost:8000 を開き、掲載リンクと拡大ダイアログを確認できます。
+プレビューの既定URLは `http://127.0.0.1:5173/`。`PORT` 環境変数で変更できます。本作業のブラウザー確認用サーバーは5173を使用しています。
 
-## 公開内容
+```powershell
+$env:PORT = '5173'
+npm run preview
+```
 
-- ビル街、カード、QRコード付きレシートのメインビジュアル
-- About Freedom（会社設立構想）
-- Wire Pay / Any Pay / payCcount / ExPress / 個人店舗向けレジアプリ
-- 各アプリの画面紹介、拡大表示、デモ・リポジトリへのリンク
-- IT、Communication、Apparel、E-commerceの4領域
+`npm run preview` は **distを配信**します。ソース編集後は `npm run build` を再実行してください。拡張子なしのURLにも対応し、存在しないURLは404のHTTPステータスで専用ページを返します。`?test=nojs` を付けるとプレビューサーバーだけがCSPでJavaScriptを止め、フォールバックを確認できます。このテスト機能・サーバーコードは公開ファイルに含めません。
 
 ## 構成
 
-- `index.html`: 承認済みの1ページ構成
-- `assets/css/freedom.css`: スタイル
-- `assets/js/freedom.js`: 画面拡大ダイアログ
-- `assets/img/freedom/`: 掲載画像
-- `scripts/build.mjs`: 公開ファイルの生成と参照確認
-- `vercel.json`: Vercelのビルド・配信設定
+- `assets/css/freedom.css`：配色・書体・全ページのレイアウト・レスポンシブ表示・動きを減らす設定。
+- `assets/js/freedom.js`：メニュー、画像拡大ダイアログ、原寸表示、フォーカス復元。
+- `assets/js/form.mjs`：既存の星の座標から立体を描く、オリジナルの幾何モデル。
+- `assets/js/motion.mjs`：TOPのCanvas描画・展開操作・停止・表示状態の管理。
+- `assets/img/freedom/open-form.svg`：静止時・JavaScript無効時の実画像。
+- `assets/img/freedom/`：作品のWebPスクリーンショット、OGP画像。
+- `scripts/make-brand-art.mjs`：静止SVGの再生成（`node scripts/make-brand-art.mjs`）。
+- `public-files.json`：公開ページ・アセットディレクトリ・設定の明示リスト。
+- `scripts/build.mjs`：公開ファイルの検証とdist生成。
+- `scripts/build.test.mjs`：公開参照、CSS、srcset、OGP、ES module、パス境界の回帰テスト。
+- `scripts/motion.test.mjs`：reduced motion、停止、画面外・非表示タブ、Canvas非対応のテスト。
+- `scripts/preview.mjs`：Node標準ライブラリのみのローカル確認サーバー。
+- `_headers`：Cloudflare Pagesのヘッダー設定。
+- `CREDITS.md`：素材出典と利用範囲。
+- `DESIGN.md`：今回の設計意図とスキル適用記録。
 
-Node.js 24で `npm run build` を実行すると、公開対象のみを `dist/` に生成します。
-外部依存パッケージはありません。フォントはGoogle Fontsを使用します。
+`npm run build` は公開参照を検証してからdistを置き換えます。HTMLのsrc/href/poster/srcset、OGP、アンカー、CSSのurl/import、JSの相対静的importを検証。画像やモジュールは宣言したアセットディレクトリごとコピーするため、JSから使う素材も漏れません。新しいページは `public-files.json` のpagesへ追加します。動的に組み立てたURLはブラウザーで別途確認してください。
 
-## 公開(デプロイ)
+## モーションとアクセシビリティ
 
-本番サイトは **Cloudflare Pages** で公開しています: https://freedom-inc.pages.dev
-GitHubの `main` ブランチに反映されると自動でビルド・デプロイされます(Build Command: `npm run build` / Output Directory: `dist`)。
+TOPの星は、既存ロゴの輪郭を重ねたオリジナルの動的ビジュアルです。外部動画、WebGL、アニメーションライブラリは使っていません。最大30fps・最大1.5倍の描画解像度に制限し、画面外・非表示タブでは描画ループを停止します。
 
-旧デザインのHTMLは履歴参照用として保持していますが、公開対象に含みません。
-`preview/` はローカルでの方向性確認用で、Git・デプロイの公開対象外です。
+- 「輪郭をひらく」で形を展開。「動きを止める」で一時停止。
+- OSの `prefers-reduced-motion: reduce` では静止表示し、形の変更も即時に切り替えます。
+- Canvasが使えない場合やJavaScript無効時は静止SVGを表示。本文、ページ移動、外部リンクはHTMLで動作。
+- 標準スクロールを維持。スクロール連動とページ遷移はCSS対応ブラウザーだけの段階的な機能拡張です。
+- キーボード用の本文スキップ、フォーカス表示、モバイルメニューのEsc操作。
+- 画像拡大はネイティブdialog。「閉じる」、Esc、背景クリックで閉じ、元の画像リンクへフォーカスを戻します。JS無効時はリンクから元画像を開けます。
+- スクリーンショットは実寸比率で表示。画像にwidth/height/alt、画面下の画像に遅延読み込みを設定。
+- フォントはシステムフォント。外部フォントの取得に依存しません。
 
-決済画面の掲載データはデモです。会社設立・商用提供・顧客導入の実績は表明していません。
+## 公開サイトと確認上の制約
+
+- 本番：https://freedom-inc.pages.dev/
+- 相談窓口：https://coconala.com/services/4471895
+- Wire Pay：公開デモアカウントで管理画面を閲覧。取引操作はしていません。
+- ExPress：入口は表示できましたが、2026年10月27日の確認ではウォレット開始後にデモサーバーが応答しませんでした。ウォレット内部の動作確認はできていません。
+- 黒レジ：公開URLはスタッフログイン画面。認証後の動作は未確認で、既存の制作画面を紹介しています。新規アカウント作成や注文・会計はしていません。
+
+## Cloudflare Pages
+
+- Build command：`npm run build`
+- Output directory：`dist`
+- Node.js：24.x
+
+GitHubのmainへの反映を契機に、Cloudflare Pagesが自動ビルド・公開します。変更はローカルのビルドとプレビューで確認し、公開の承認を得てからmainへ反映します。公開後は本番のページ・画像・モジュール・404を確認してください。`vercel.json` は既存の互換設定として残しています。

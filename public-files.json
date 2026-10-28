@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "index.html",
+    "about.html",
+    "works.html",
+    "contact.html",
+    "404.html"
+  ],
+  "assets": [
+    "assets/css",
+    "assets/js",
+    "assets/img"
+  ],
+  "files": [
+    "_headers"
+  ]
+}

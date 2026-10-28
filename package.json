@@ -2,6 +2,12 @@
   "name": "freedom-corporate-site",
   "version": "1.0.0",
   "private": true,
-  "scripts": { "build": "node scripts/build.mjs" },
-  "engines": { "node": "24.x" }
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "test": "node --test scripts/*.test.mjs"
+  },
+  "engines": {
+    "node": "24.x"
+  }
 }

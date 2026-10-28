@@ -6,3 +6,4 @@ preview/
 .env.*
 .vercel
 .env*
+.taste-skill/
