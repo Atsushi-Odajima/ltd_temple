@@ -38,6 +38,7 @@ npm run preview
 - `assets/js/form.mjs`：既存の星の座標から立体を描く、オリジナルの幾何モデル。
 - `assets/js/motion.mjs`：TOPのCanvas描画・展開操作・停止・表示状態の管理。
 - `assets/img/freedom/open-form.svg`：静止時・JavaScript無効時の実画像。
+- `assets/img/freedom/concept-materials.webp`：TOPの考え方に添えたオリジナルのコンセプト画像（1200×800、約46KB）。実在のオフィスや顧客の写真ではありません。発想・設計・実装のシンボルとWeb／アプリの図はHTML内のSVGで描画しています。
 - `assets/img/freedom/`：作品のWebPスクリーンショット、OGP画像。
 - `scripts/make-brand-art.mjs`：静止SVGの再生成（`node scripts/make-brand-art.mjs`）。
 - `public-files.json`：公開ページ・アセットディレクトリ・設定の明示リスト。
