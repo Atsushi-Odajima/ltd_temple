@@ -34,7 +34,7 @@ button,summary,a{outline-offset:6px}
 .solid-link:active{transform:scale(.98)}
 .section-space{padding:120px var(--gutter)}
 
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);grid-template-areas:'copy art' 'word word' 'next next';align-items:center;gap:24px 32px;padding:24px var(--gutter) 16px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);grid-template-areas:'copy art' 'word word' 'tools tools' 'next next';align-items:center;gap:24px 32px;padding:24px var(--gutter) 16px}
 .hero-copy{grid-area:copy;min-width:0;padding:24px 0}
 .hero h1{font-size:clamp(30px,3.2vw,48px);line-height:1.55;font-weight:500;letter-spacing:.015em}
 .hero-copy p{margin-top:26px;font-size:16px;line-height:1.9}
@@ -49,8 +49,17 @@ button,summary,a{outline-offset:6px}
 #freedom-form{opacity:0}
 .art-ready #freedom-form{opacity:1}
 .art-ready .art-poster{visibility:hidden}
-.hero-word{grid-area:word;min-width:0;font-family:var(--display);font-weight:700;font-size:min(20.8vw,410px);letter-spacing:-.075em;line-height:1.15;white-space:nowrap;pointer-events:none}
+.hero-word{grid-area:word;min-width:0;font-family:var(--display);font-weight:700;font-size:min(17.8vw,350px);letter-spacing:-.075em;line-height:1.15;white-space:nowrap;pointer-events:none}
 .hero-word .brand-dot{color:var(--ink)}
+.tech-strip{grid-area:tools;min-width:0;padding:12px 0 20px}
+.tech-heading{font-size:12px;line-height:1.6;color:var(--muted);margin-bottom:20px;letter-spacing:.06em}
+.tech-window{overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);outline-offset:-3px}
+.tech-track{display:flex;width:max-content;animation:tech-drift 60s linear infinite}
+.tech-group{display:flex;align-items:center;justify-content:space-around;flex-shrink:0;gap:clamp(32px,4vw,72px);min-width:calc(100vw - 2 * var(--gutter));list-style:none;margin:0;padding:0 clamp(16px,2vw,36px)}
+.tech-group li{display:flex;flex:0 0 76px;flex-direction:column;align-items:center;gap:10px;font-size:11px;line-height:1.6;white-space:nowrap;color:var(--muted)}
+.tech-group img{width:36px;height:36px;object-fit:contain}
+.tech-strip:hover .tech-track,.tech-strip:focus-within .tech-track{animation-play-state:paused}
+@keyframes tech-drift{to{transform:translateX(-50%)}}
 .hero-next{grid-area:next;display:flex;justify-content:space-between;gap:24px;font-size:14px;min-height:46px;align-items:center}
 .hero-next span{font-size:22px}
 
@@ -237,13 +246,16 @@ to{transform:none}
 .header.menu-enhanced nav{display:none}
 .header.menu-open nav{display:flex}
 .header.menu-enhanced .menu-toggle{display:block}
-.hero{grid-template-columns:minmax(0,1fr);grid-template-areas:'copy' 'art' 'word' 'next';gap:20px;padding-top:12px}
+.hero{grid-template-columns:minmax(0,1fr);grid-template-areas:'copy' 'art' 'word' 'tools' 'next';gap:20px;padding-top:12px}
 .hero-copy{padding:10px 0 0}
 .hero h1{font-size:clamp(27px,4.4vw,36px);line-height:1.55}
 .hero-copy p{font-size:14px;margin-top:18px}
 .hero-copy .text-link{margin-top:12px;font-size:14px}
 .hero-art{width:100%;max-width:500px;height:auto;aspect-ratio:5/4;justify-self:center}
-.hero-word{font-size:20.1vw}
+.tech-strip{padding-top:0;padding-bottom:8px}
+.tech-heading{margin-bottom:16px;font-size:11px}
+.tech-group li{flex-basis:64px}
+.tech-group img{width:32px;height:32px}
 .hero-next{font-size:13px}
 .section-space{padding-top:76px;padding-bottom:76px}
 .idea,.fields,.about-intro,.future{grid-template-columns:1fr;gap:38px}
@@ -349,5 +361,9 @@ to{transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
 *,*::before,*::after{animation:none!important;transition:none!important;view-transition-name:none!important}
 .hero-art{transform:none!important}
+.tech-window{mask-image:none}
+.tech-track{width:100%;transform:none}
+.tech-group{min-width:0;width:100%;flex-wrap:wrap;justify-content:flex-start;gap:24px 20px;padding:0}
+.tech-group[aria-hidden=true]{display:none}
 ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
 }

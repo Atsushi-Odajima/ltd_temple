@@ -12,7 +12,7 @@
 - 幾何学的なスリット：内側の2層に独自に設計した等間隔の切れ目を配置。現行ビジュアルは独自の幾何学形状だけで構成し、前面は無地。他社ロゴ・既存の文字記号・第三者の柄を転用していません。
 
 - `assets/img/freedom/concept-materials.webp`：組み込みimagegenツールで生成した、紙と青い立体のコンセプト画像。生成後に1200×800のWebPへ最適化。実在する職場・社員・顧客・制作実績の写真として扱わない。
-- TOPの三つのシンボルとWeb／アプリの図：本作業で作成したインラインSVGと既存のFreedomロゴ。追加の第三者アイコンライブラリは未使用。
+- TOPの三つのシンボルとWeb／アプリの図：本作業で作成したインラインSVGと既存のFreedomロゴ。
 
 生成プロンプト：
 
@@ -23,6 +23,15 @@
 
 - `assets/img/logo.svg` / `favicon.svg`：元リポジトリのFreedomロゴを継続使用。反転した星・反転したeを維持。
 - 書体：端末のArial、Yu Gothic、Meiryo等をCSSのフォールバックで利用。フォントファイルは配布していません。
+
+## 技術ロゴ帯
+
+- 取得元：[Devicon](https://github.com/devicons/devicon) の `icons/{name}/{name}-original.svg`。2026-10-29取得。
+- 対象：HTML5、CSS3、JavaScript、TypeScript、React、Next.js、Node.js、Tailwind CSS、Git、GitHub、Cloudflare。
+- `assets/img/technology/` に元の配色・形状を保ったSVGを保存。外部CDNの画像を直接参照していません。
+- DeviconのMITライセンス（Copyright (c) 2015 konpa）全文を `assets/img/technology/LICENSE.txt` に同梱し、公開ビルドにも含めています。各ロゴの商標はそれぞれの権利者に帰属します。提携・推薦・認定の表示ではありません。
+- 掲載根拠：当サイトのHTML・CSS・JavaScript・Node.js・Git/GitHub・Cloudflare Pages、および [Wire Payのpackage.json](https://github.com/Atsushi-Odajima/Payment-management/blob/main/package.json)（確認時blob `3683a3f04c2401783dea72b7371c7fce4b1bf0e2`）のTypeScript・React・Next.js・Tailwind CSS。
+- 演出の参考：[株式会社Tech Lab](https://techlab-inc.co.jp/) の技術ロゴ帯。サイト固有のコード・文章・写真は複製していません。
 
 ## 実サイトのスクリーンショット
 
