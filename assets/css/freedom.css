@@ -52,11 +52,10 @@ button,summary,a{outline-offset:6px}
 .hero-word{grid-area:word;min-width:0;font-family:var(--display);font-weight:700;font-size:min(17.8vw,350px);letter-spacing:-.075em;line-height:1.15;white-space:nowrap;pointer-events:none}
 .hero-word .brand-dot{color:var(--ink)}
 .tech-strip{grid-area:tools;min-width:0;padding:12px 0 20px}
-.tech-heading{font-size:12px;line-height:1.6;color:var(--muted);margin-bottom:20px;letter-spacing:.06em}
 .tech-window{overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);outline-offset:-3px}
 .tech-track{display:flex;width:max-content;animation:tech-drift 60s linear infinite}
 .tech-group{display:flex;align-items:center;justify-content:space-around;flex-shrink:0;gap:clamp(32px,4vw,72px);min-width:calc(100vw - 2 * var(--gutter));list-style:none;margin:0;padding:0 clamp(16px,2vw,36px)}
-.tech-group li{display:flex;flex:0 0 76px;flex-direction:column;align-items:center;gap:10px;font-size:11px;line-height:1.6;white-space:nowrap;color:var(--muted)}
+.tech-group li{display:flex;flex:0 0 76px;align-items:center;justify-content:center}
 .tech-group img{width:36px;height:36px;object-fit:contain}
 .tech-strip:hover .tech-track,.tech-strip:focus-within .tech-track{animation-play-state:paused}
 @keyframes tech-drift{to{transform:translateX(-50%)}}
@@ -253,7 +252,6 @@ to{transform:none}
 .hero-copy .text-link{margin-top:12px;font-size:14px}
 .hero-art{width:100%;max-width:500px;height:auto;aspect-ratio:5/4;justify-self:center}
 .tech-strip{padding-top:0;padding-bottom:8px}
-.tech-heading{margin-bottom:16px;font-size:11px}
 .tech-group li{flex-basis:64px}
 .tech-group img{width:32px;height:32px}
 .hero-next{font-size:13px}
