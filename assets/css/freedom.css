@@ -44,11 +44,15 @@ button,summary,a{outline-offset:6px}
 .hero-signature svg,.hero-signature img{width:30px;height:30px}
 .hero-signature svg{fill:none;stroke:var(--blue);stroke-width:1.3;stroke-linejoin:round}
 .hero-signature li:last-child{color:var(--bronze)}
-.hero-art{grid-area:art;position:relative;min-width:0;width:100%;height:clamp(340px,28vw,480px)}
+.hero-art{grid-area:art;position:relative;min-width:0;width:100%;height:clamp(360px,34vw,580px)}
 .art-poster,#freedom-form{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 #freedom-form{opacity:0}
 .art-ready #freedom-form{opacity:1}
 .art-ready .art-poster{visibility:hidden}
+.hero-art{container-type:size}
+.hero-script{position:absolute;right:2%;bottom:-2%;width:min(42%,200px);height:auto;transform:rotate(-4deg);transform-origin:right bottom;pointer-events:none;animation:script-write 1.4s var(--ease) .5s backwards}
+@supports(width:1cqw){.hero-script{--stage:min(100cqw,125cqh);right:auto;bottom:auto;left:calc(50% + var(--stage)*.1);top:calc(50% + var(--stage)*.36);width:max(calc(var(--stage)*.4),150px)}}
+@keyframes script-write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .hero-word{grid-area:word;min-width:0;font-family:var(--display);font-weight:700;font-size:min(17.8vw,350px);letter-spacing:-.075em;line-height:1.15;white-space:nowrap;pointer-events:none}
 .hero-word .brand-dot{color:var(--ink)}
 .tech-strip{grid-area:tools;min-width:0;padding:12px 0 20px}

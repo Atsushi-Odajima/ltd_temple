@@ -1,78 +1,108 @@
-// Original split-loop sculpture: two interrupted arcs and a curved diagonal spine.
-// The two inner slotted layers are geometric structure, never a front-face ornament.
-const TAU = Math.PI * 2;
-const SEGMENTS = 72;
-const LAYERS = 13;
-const GAP = 3;
-const STEP = TAU / SEGMENTS;
-const circle = Array.from({length:SEGMENTS+1},(_,i)=>[Math.cos(i*STEP),Math.sin(i*STEP)]);
+// Three triangle frames stacked toward the lower right, inside three rings stacked the same way.
+// Each ring is opened a little wider than the one behind it. One ring carries one patterned accent.
+const DEG = Math.PI / 180;
+const BLUE = [30, 67, 93], BRONZE = [150, 114, 72], STEEL = [118, 147, 168], LIGHT = [226, 233, 238];
+const BAR = 11, DEPTH = 7, SIZE = 1.05;
 
-// An offset S-curve gives the circular silhouette a directional, asymmetric centre.
-function spine(t) {
-  const u=1-t;
-  const p=[[-174,126],[85,119],[-95,-129],[175,-126]];
-  const x=u*u*u*p[0][0]+3*u*u*t*p[1][0]+3*u*t*t*p[2][0]+t*t*t*p[3][0];
-  const y=u*u*u*p[0][1]+3*u*u*t*p[1][1]+3*u*t*t*p[2][1]+t*t*t*p[3][1];
-  const dx=3*u*u*(p[1][0]-p[0][0])+6*u*t*(p[2][0]-p[1][0])+3*t*t*(p[3][0]-p[2][0]);
-  const dy=3*u*u*(p[1][1]-p[0][1])+6*u*t*(p[2][1]-p[1][1])+3*t*t*(p[3][1]-p[2][1]);
-  const length=Math.hypot(dx,dy);
-  return {x,y,nx:-dy/length,ny:dx/length};
+// Proportions follow the reference drawing: each frame is larger and sits lower right of the last.
+const triangles = [
+  { points: [[-41, -190], [105, 63], [-185, 63]], color: STEEL },
+  { points: [[-10, -169], [155, 95], [-176, 95]], color: BRONZE },
+  { points: [[19, -148], [191, 129], [-155, 129]], color: BLUE },
+];
+// Back to front. Every opening starts at the same upper-right angle and reaches further round.
+export const rings = [
+  { centre: [-12, -12], radius: 236, gap: 24, color: STEEL },
+  { centre: [0, 0], radius: 250, gap: 78, color: BRONZE },
+  { centre: [12, 12], radius: 264, gap: 150, color: BLUE, accent: { from: 150, to: 192, cells: 7 } },
+];
+const GAP_START = -64, HALF = 6, ACCENT_HALF = 15;
+
+function inset(points, distance) {
+  const [a, b, c] = points;
+  const la = Math.hypot(b[0] - c[0], b[1] - c[1]), lb = Math.hypot(a[0] - c[0], a[1] - c[1]), lc = Math.hypot(a[0] - b[0], a[1] - b[1]);
+  const perimeter = la + lb + lc;
+  const centre = [(la * a[0] + lb * b[0] + lc * c[0]) / perimeter, (la * a[1] + lb * b[1] + lc * c[1]) / perimeter];
+  const area = Math.abs((b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1])) / 2;
+  const k = 1 - distance / (2 * area / perimeter);
+  return points.map(p => [centre[0] + (p[0] - centre[0]) * k, centre[1] + (p[1] - centre[1]) * k]);
 }
-const spinePoints=Array.from({length:41},(_,i)=>spine(i/40));
 
 export function sculpture(time = 0, open = 0) {
-  const faces=[];
-  const yaw=-.42+Math.sin(time*.19)*.12-open*.22;
-  const pitch=.23+Math.cos(time*.15)*.08;
-  const cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);
-  function point(x,y,z,twist) {
-    const a=Math.cos(twist),b=Math.sin(twist);
-    const xx=x*a-y*b, yy=x*b+y*a;
-    const xxx=xx*cy+z*sy, zz=-xx*sy+z*cy;
-    const yyy=yy*cp-zz*sp, zzz=yy*sp+zz*cp;
-    const scale=700/(700+zzz);
-    return [450+xxx*scale,360+yyy*scale,zzz];
+  const faces = [];
+  const yaw = -.1 + Math.sin(time * .52) * .24 - open * .08;
+  const pitch = .08 + Math.sin(time * .41) * .1 + open * .04;
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+  function project(x, y, z) {
+    const xx = x * cy + z * sy, zz = -x * sy + z * cy;
+    const yy = y * cp - zz * sp, zzz = y * sp + zz * cp;
+    const scale = SIZE * 700 / (700 + zzz);
+    return [450 + xx * scale, 360 + yy * scale, zzz];
   }
-  function face(points,tone,layer,kind='shell') {
-    const base=layer===6 ? [166,130,88] : [194,210,222];
-    const fill=`rgb(${base.map(c=>Math.round(Math.max(20,Math.min(250,c*tone)))).join(',')})`;
-    faces.push({points,fill,layer,kind,depth:points.reduce((sum,p)=>sum+p[2],0)/points.length});
+  // `bias` only moves a face earlier or later in paint order; it keeps the inlay above its own band.
+  function face(points, color, tone, layer, kind, bias = 0) {
+    const fill = `rgb(${color.map(c => Math.round(Math.max(12, Math.min(244, c * tone)))).join(',')})`;
+    faces.push({ points, fill, layer, kind, depth: points.reduce((sum, p) => sum + p[2], 0) / points.length - bias });
   }
-  for(let layer=0;layer<LAYERS;layer++) {
-    const z=(layer-6)*(10+open*11);
-    // A gentle oscillation preserves the intended silhouette while the layers fan open.
-    const twist=(layer-6)*(.016+open*.03)+Math.sin(time*.13)*.12;
-    const radius=242-layer*.65;
-    const patterned=layer===4||layer===8;
-    const innerRadius=radius-(patterned?43:20);
-    const ring=(r,dz)=>circle.map(([x,y])=>point(x*r,y*r,z+dz,twist));
-    const outer=ring(radius,0),inner=ring(innerRadius,0),back=ring(radius,4),inside=ring(innerRadius,4);
-    const active=j=>j>=GAP&&j<36-GAP||j>=36+GAP&&j<SEGMENTS-GAP;
-    for(let j=0;j<SEGMENTS;j++) {
-      if(!active(j)) continue;
-      const n=j+1;
-      const tone=.76+Math.cos(j*STEP-.8)*.16;
-      // Interior layers are split into angular ribs, leaving real negative-space slots.
-      if(patterned&&j%4===1) continue;
-      face([outer[j],outer[n],inner[n],inner[j]],1.06,layer,patterned?'inset-rib':'shell');
-      face([outer[j],back[j],back[n],outer[n]],tone,layer);
-      face([inner[j],inner[n],inside[n],inside[j]],tone*.62,layer);
-      if(!active(j-1)||(patterned&&(j-1)%4===1)) face([outer[j],inner[j],inside[j],back[j]],.74,layer);
-      if(!active(n)||(patterned&&n%4===1)) face([outer[n],back[n],inside[n],inner[n]],.68,layer);
-    }
-    const width=patterned?24:17;
-    const ribbon=(offset,dz)=>spinePoints.map(p=>point(p.x+p.nx*offset,p.y+p.ny*offset,z+dz,twist));
-    const left=ribbon(-width/2,0),right=ribbon(width/2,0),leftBack=ribbon(-width/2,4),rightBack=ribbon(width/2,4);
-    for(let j=0;j<40;j++) {
-      const n=j+1;
-      // Short transverse slots run through the middle sheets only.
-      if(patterned&&j%6===2) continue;
-      face([left[j],left[n],right[n],right[j]],1.08,layer,patterned?'inset-rib':'spine');
-      face([left[j],leftBack[j],leftBack[n],left[n]],.70,layer);
-      face([right[j],right[n],rightBack[n],rightBack[j]],.53,layer);
-      if(j===0||(patterned&&(j-1)%6===2)) face([left[j],right[j],rightBack[j],leftBack[j]],.73,layer);
-      if(n===40||(patterned&&n%6===2)) face([left[n],leftBack[n],rightBack[n],right[n]],.68,layer);
+  function slab(outline, place, color, layer, kind) {
+    const front = outline.map(([x, y]) => place(x, y, 0)), back = outline.map(([x, y]) => place(x, y, DEPTH));
+    face(front, color, 1, layer, kind);
+    face(back, color, .52, layer, kind);
+    outline.forEach((p, i) => {
+      const n = (i + 1) % outline.length, q = outline[n];
+      face([front[i], front[n], back[n], back[i]], color, .68 + Math.cos(Math.atan2(q[1] - p[1], q[0] - p[0]) - .9) * .14, layer, kind);
+    });
+  }
+  const polar = (radius, degrees) => [Math.cos(degrees * DEG) * radius, Math.sin(degrees * DEG) * radius];
+  function arc(from, to, inner, outer, place, color, layer, kind) {
+    const steps = Math.max(1, Math.ceil((to - from) / 4));
+    for (let i = 0; i < steps; i++) {
+      const a = from + (to - from) * i / steps, b = from + (to - from) * (i + 1) / steps;
+      slab([polar(outer, a), polar(outer, b), polar(inner, b), polar(inner, a)], place, color, layer, kind);
     }
   }
-  return faces.sort((a,b)=>b.depth-a.depth);
+
+  for (const [index, ring] of rings.entries()) {
+    // Rings turn together; opening fans them apart so the three openings step round one after another.
+    const turn = time * .2 + open * (index - 1) * .45;
+    const tilt = Math.sin(time * .8 - index * .8) * (.05 + open * .12);
+    const lift = 10 - (index - 1) * (10 + open * 34) + Math.sin(time * 1.4 - index * .9) * 5;
+    const ct = Math.cos(turn), st = Math.sin(turn);
+    const place = (x, y, z) => {
+      const rx = x * ct - y * st, ry = x * st + y * ct;
+      return project(ring.centre[0] + rx, ring.centre[1] + ry * Math.cos(tilt) - z * Math.sin(tilt), lift + ry * Math.sin(tilt) + z * Math.cos(tilt));
+    };
+    const from = GAP_START + ring.gap, to = GAP_START + 360, layer = 3 + index;
+    const inner = ring.radius - HALF, outer = ring.radius + HALF;
+    if (!ring.accent) { arc(from, to, inner, outer, place, ring.color, layer, 'ring'); continue; }
+    // The single accent: the band swells and holds one row of teeth, a triangle repeat from Samoan tatau and siapo.
+    const accent = ring.accent, low = ring.radius - ACCENT_HALF, high = ring.radius + ACCENT_HALF;
+    arc(from, accent.from, inner, outer, place, ring.color, layer, 'ring');
+    arc(accent.from, accent.to, low, high, place, ring.color, layer, 'accent');
+    arc(accent.to, to, inner, outer, place, ring.color, layer, 'ring');
+    const step = (accent.to - accent.from - 4) / accent.cells;
+    for (let i = 0; i < accent.cells; i++) {
+      const a = accent.from + 2 + step * i;
+      const tooth = [polar(low + 5, a + .5), polar(low + 5, a + step - .5), polar(high - 5, a + step / 2)];
+      face(tooth.map(([x, y]) => place(x, y, -1)), LIGHT, 1, layer, 'inlay-teeth', 5);
+    }
+  }
+
+  for (const [index, triangle] of triangles.entries()) {
+    const outer = triangle.points, inner = inset(outer, BAR);
+    const centre = [(outer[0][0] + outer[1][0] + outer[2][0]) / 3, (outer[0][1] + outer[1][1] + outer[2][1]) / 3];
+    // A wave passes from the back frame to the front: each one sways and bobs a beat later.
+    const sway = Math.sin(time * 1.25 - index * .75) * (.04 + open * .16);
+    const lift = -(index - 1) * (14 + open * 36) + Math.sin(time * 1.6 - index * .9) * 6 * (.3 + open);
+    const cs = Math.cos(sway), ss = Math.sin(sway);
+    const place = (x, y, z) => {
+      const lx = x - centre[0];
+      return project(centre[0] + lx * cs + z * ss, y, lift - lx * ss + z * cs);
+    };
+    for (let edge = 0; edge < 3; edge++) {
+      const n = (edge + 1) % 3;
+      slab([outer[edge], outer[n], inner[n], inner[edge]], place, triangle.color, index, 'triangle');
+    }
+  }
+  return faces.sort((a, b) => b.depth - a.depth);
 }
