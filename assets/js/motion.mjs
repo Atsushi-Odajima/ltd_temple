@@ -14,7 +14,7 @@ if (context) {
       context.beginPath(); face.points.forEach(([x,y],i)=>i?context.lineTo(x,y):context.moveTo(x,y));
       context.closePath(); context.fillStyle=face.fill; context.fill();
     }
-    // A 7-second cycle snaps open, holds, and snaps shut without interaction; the model adds the sway.
+    // A 7-second cycle snaps open, holds, and snaps shut without interaction; the model adds the turning.
     const time = reduced.matches ? 0 : elapsed;
     const swing = .5 - .5 * Math.cos(time * Math.PI * 2 / 7 + 1.3);
     const spread = reduced.matches ? .38 : swing * swing * (3 - 2 * swing);
