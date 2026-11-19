@@ -14,9 +14,10 @@ if (context) {
       context.beginPath(); face.points.forEach(([x,y],i)=>i?context.lineTo(x,y):context.moveTo(x,y));
       context.closePath(); context.fillStyle=face.fill; context.fill();
     }
-    // A smooth 12-second opening cycle runs without interaction; the model adds rotation.
+    // A 7-second cycle snaps open, holds, and snaps shut without interaction; the model adds the sway.
     const time = reduced.matches ? 0 : elapsed;
-    const spread = reduced.matches ? .38 : .5 - .46 * Math.cos(time * Math.PI / 6 + 1.3);
+    const swing = .5 - .5 * Math.cos(time * Math.PI * 2 / 7 + 1.3);
+    const spread = reduced.matches ? .38 : swing * swing * (3 - 2 * swing);
     for (const face of sculpture(time,spread)) {
       polygon(face);
     }
